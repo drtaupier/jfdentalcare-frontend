@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-dark bg-dark">
+                <h1 class="my-4 text-light">Message</h1>
+                <button type="button" 
+                        class="btn btn-success"
+                        (click)="back()">Back</button>
+            </nav>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9 mx-auto" *ngIf="selectedMessage">
+            <table class="table table-sm table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="text-left col-5" scope="col"><span style="margin-left: 25px; font-size:1.6rem;">{{ selectedMessage.firstname | titlecase }} {{ selectedMessage.lastname | titlecase}}</span> </th>
+                        <th class="text-right">{{selectedMessage.phone | phone}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-left col-2"><strong>E-mail: </strong></td>
+                        <td class="text-left">{{ selectedMessage.email }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left col-2"><strong>When: </strong></td>
+                        <td class="text-left">{{ selectedMessage.possible_appt }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left col-2"><strong> Message: </strong></td>
+                        <td class="text-left">{{ selectedMessage.message | titlecase }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left col-2"><strong>Date: </strong></td>
+                        <td class="text-left">{{ selectedMessage.fecha_mensaje | date: 'longDate'}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2" class="text-right">
+                            <button class="btn btn-success" (click)="cambiarStatus( selectedMessage.message_id )">Attended</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

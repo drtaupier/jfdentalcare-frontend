@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-dark bg-dark">
+            <h1 class="my-4 text-light">Welcome {{ usuario?.firstname | titlecase}}! </h1>
+            <button type="button" class="btn btn-success" (click)="logout()">Logout</button>
+          </nav>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-9 mx-auto">
+          <table class="table table-striped my-custom-style d-justify-content-center align-items-center">
+            <thead class="thead">
+              <tr>
+                <th scope="order" class="table-primary text-center">#</th>
+                <th scope="name" class="table-primary text-center">Name</th>
+                <th scope="phone" class="table-primary text-center">Phone</th>
+                <th scope="email" class="table-primary text-center">E-mail</th>
+                <th scope="fecha" class="table-primary text-center">Date</th>
+                <th class="table-primary"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="wrap" *ngFor="let message of messages, let i = index">
+                <td class="text-center">{{ i + 1 }}</td>
+                <td class="text-center">{{ message.firstname | titlecase }} {{ message.lastname | titlecase }}</td>
+                <td class="text-center">{{ message.phone | phone }}</td>
+                <td class="text-center">{{ message.email | lowercase }}</td>
+                <td class="text-center">{{ message.fecha_mensaje | date}}</td>
+                <td class="text-center"> 
+                  <button type="button" class="btn btn-info" (click)="getId(message.message_id)">Info</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>

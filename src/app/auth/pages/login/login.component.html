@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row m-0 vh-100 justify-content-center align-items-center">
+        <div class="col-5 text-center">
+            <h2 class="text-light mb-5">Login</h2>
+            <form autocomplete="off"
+                  [formGroup]="miFormulario"
+                  (ngSubmit)="login()">
+
+                  <div class="mb-3">
+                    <input type="email" 
+                           formControlName="username"
+                           class="form-control"
+                           placeholder="name@example.com">
+                  </div>
+
+                  <div class="mb-5">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password"
+                           placeholder="Password">
+                  </div>
+
+                  <button type="submit"
+                          class="btn btn-success mb-3"
+                          [disabled]="miFormulario.invalid">
+                            Login</button>
+              </form>
+          </div>
+      </div>
+  </div>
