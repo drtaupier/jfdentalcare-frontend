@@ -1,12 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of, throwError } from "rxjs";
-import { map, switchMap, tap, catchError } from 'rxjs/operators'
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-import { environment } from 'src/environments/environment';
-import { Usuario, Message, MessageStatus } from '../interfaces/interfaces';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { Message, MessageStatus, Usuario } from '../interfaces/interfaces';
 
 
 @Injectable({
@@ -112,6 +112,13 @@ export class AuthService {
 
     getMensajes(){
       this.http.get<Message[]>(`${this.baseUrl}/messages/`)
+    }
+
+    sendMessage(firstname: string, lastname: string, phone: string, email: string, possible_appt: number, message: string){
+      const url = `${this.baseUrl}/message/sendingmessage`;
+      const body = { firstname, lastname, phone, email, possible_appt, message }
+      
+      return this.http.post(url, body);
     }
 
   }

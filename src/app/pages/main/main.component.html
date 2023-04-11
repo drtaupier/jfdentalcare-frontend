@@ -1,48 +1,225 @@
-<header class="container-fluid bg-primary d-flex justify-content-between align-items-center">
-  <p class="text-light p-1 fs-6 fw-bold">Call today: (407)703-3311</p>
-  <p class="text-light p-1 fs-6 fw-bold">380 B Semoran Commerce Place Suite 204 - Apopka Fl 32703</p>
-</header>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <span class="text-primary fs-5 fw-bold">JF Dental Care</span></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Our Services
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">General Dentistry</a></li>
-            <li><a class="dropdown-item" href="#">Cosmetic Dentistry</a></li>
-            <li><a class="dropdown-item" href="#">Invisalign</a></li>
-            <li><a class="dropdown-item" href="#">Restorative Dentistry</a></li>
-            <li><a class="dropdown-item" href="#">Dental Emergencies</a></li>
-            <li><a class="dropdown-item" href="#">Oral Surgery</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand mr-5" href="#">JF Dental Care</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/auth">Login</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Our Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">General Dentistry</a></li>
+              <li><a class="dropdown-item" href="#">Cosmetic Dentristry</a></li>
+              <li><a class="dropdown-item" href="#">Invisalign</a></li>
+              <li><a class="dropdown-item" href="#">Restorative Denstistry</a></li>
+              <li><a class="dropdown-item" href="#">Dental Emergencies</a></li>
+              <li><a class="dropdown-item" href="#">Oral Surgery</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+
+      </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <img src="" alt="inicio">
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="hero-content" style="position: relative">
+      <img src="../../../assets/images/img2.jpg" style="width: 100vw; max-height: 700px" alt="intro">
+      <div class="text-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white;">
+        <h2>Welcome to <br> JF Dental Care</h2>
       </div>
     </div>
   </div>
-</nav>
+</div>
+
+<div class="container contenedor d-flex align-items-center justify-content-center max-height-650">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
+      <img class="img-person" src="../../../assets/images/doctor.png" alt="Imagen de la persona" style="object-fit: contain;">
+    </div>
+    <div class="col-md-8 col-sm-12 d-flex align-items-center justify-content-center text-center">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Dr Francisco Chumpitaz DDS</h5>
+          <p class="card-text">Dr. Francisco Chumpitaz decided to become a dentist when he saw his father working with patients. Passionate about helping those in need, he realized dentistry was the right career for him. He received his DDS degree from Universidad Inca Garcilaso De la Vega in Peru and completed his Advanced Education in General Dentistry (AEGD) at Larkin Community Hospital. His favorite part of being a dentist is seeing a patient’s smile return after treatment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row max-height-650 bg-dark">
+  <div class="col-md-12">
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="carousel-item-overlay">
+            <img src="../../../assets/images/_SAP1107.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h5>Flor Lopez</h5>
+              <p>"I have been a patient of Dr. Chumpitaz for 2 years. The service he provides is very professional,
+                and the level of care for his patients is very good. I felt very confortable with him."
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-item-overlay">
+            <img src="../../../assets/images/_SAP1233.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h5>Michael Green</h5>
+              <p>“I have been seeing Dr. Chumpitaz for several years and I will continue to do so because of his quality of care
+                 and the continued concern toward seeing that his patients are well.”
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-item-overlay">
+            <img src="../../../assets/images/_SAP1196.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h5>Kate Wright</h5>
+              <p>“I have been seeing Dr. Chumpitaz for several years and I will continue to do so because of his quality of 
+                care and the continued concern toward seeing that his patients are well.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row max-height-650">
+  <div class="col-md-12 d-flex flex-row justify-content-center align-items-center">
+    <div class="card col-sm-6 col-md-4 col-lg-3 mb-3" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5>Dental Emergencies</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
+    <div class="card col-sm-6 col-md-4 col-lg-3 mb-3" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5>Invisalign</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
+    <div class="card col-sm-6 col-md-4 col-lg-3 mb-3" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5>Oral Surgery</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="row max-height-650 bg-light d-flex flex-row">
+  <div class="col-md-6">
+    <div class="form-column">
+
+      <h2>Contact us</h2>
+
+      <form [formGroup]="miFormulario"
+            class="form-contact" 
+            autocomplete="off"
+            (ngSubmit)="enviar()"> 
+         <div class="row mb-3">
+           <div class="col-3">
+             <label for="firstname" class="form-label">Firstname:</label>
+           </div>
+           <div class="col-9">
+             <input type="text" class="form-control" formControlName="firstname" placeholder="Firstname">
+           </div>
+         </div>
+         <div class="row mb-3">
+           <div class="col-3">
+             <label for="lastname" class="form-label">Lastname:</label>
+           </div>
+           <div class="col-9">
+             <input type="text" class="form-control" formControlName="lastname" placeholder="Lastname">
+           </div>
+         </div>
+         <div class="row mb-3">
+           <div class="col-3">
+             <label for="phone" class="form-label">Phone:</label>
+           </div>
+           <div class="col-9">
+             <input type="tel" class="form-control" formControlName="phone" placeholder="(123)456-7890">
+           </div>
+         </div> 
+         <div class="row mb-3">
+           <div class="col-3">
+             <label for="email" class="form-label">Email address:</label>
+           </div>
+           <div class="col-9">
+             <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
+           </div>
+         </div>  
+         <div class="row mb-3">
+          <div class="col-3">
+            <label for="possible_appt" class="form-label">When:</label>
+          </div>
+          <select class="form-select" formControlName="possible_appt" aria-label="selected">
+            <option selected> --- Select ---</option>
+            <option value="1">As soon as possible</option>
+            <option value="2">Within the next 3 days</option>
+            <option value="3">to the next week</option>
+          </select>
+         </div>
+         <div class="row mb-3">
+           <div class="col-3">
+             <label for="message" class="form-label">Message:</label>
+            </div>
+            <div class="col-9">
+             <textarea class="form-control" formControlName="message" rows="3"></textarea>
+           </div>
+         </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-success float-right" [disabled]="miFormulario.invalid">Enviar</button>
+        </div>
+        
+      </form>
+
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="imagen-contact">
+      <img src="...">
+    </div>
+  </div>
+</div>
+
+<footer class="bg-dark text-center py-3">
+  <span class="text-white"> JF Dental Care © {{ getYear()}} </span>
+</footer>

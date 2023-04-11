@@ -35,6 +35,7 @@ type NewType = Message;
 
     td{
       font-size: 1rem;
+      text-align: left;
     }
 
     .modal-header h1.modal-title {

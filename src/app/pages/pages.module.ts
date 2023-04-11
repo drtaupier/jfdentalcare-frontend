@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainComponent } from './main/main.component';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -9,7 +10,9 @@ import { MainComponent } from './main/main.component';
     MainComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
+
 })
 export class PagesModule { }

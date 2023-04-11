@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -16,6 +17,8 @@ import { PhonePipe } from "../pipes/phone.pipe";
   imports: [
     CommonModule,
     ProtectedRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     PhonePipe
