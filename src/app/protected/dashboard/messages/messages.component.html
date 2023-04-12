@@ -1,15 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <nav class="navbar navbar-dark bg-dark">
-                <h1 class="my-4 text-light">Message</h1>
-                <button type="button" 
-                        class="btn btn-success"
-                        (click)="back()">Back</button>
-            </nav>
-            <hr>
-        </div>
-    </div>
+    <app-header/>
 
     <div class="row">
         <div class="col-md-9 mx-auto" *ngIf="selectedMessage">
@@ -47,4 +37,5 @@
             </table>
         </div>
     </div>
+
 </div>

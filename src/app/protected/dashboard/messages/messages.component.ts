@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
+import { Observable } from 'rxjs';
+import { filter, switchMap } from "rxjs/operators";
 import { Message, Usuario } from 'src/app/auth/interfaces/interfaces';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs'
-import { switchMap, filter } from "rxjs/operators";
-import jwt_decode from "jwt-decode";
 
 
 type NewType = Message;
@@ -15,10 +14,6 @@ type NewType = Message;
   templateUrl: './messages.component.html',
   styles: [
     `
-    *{
-      margin: 15px;
-    }
-
     h1{
       font-size: 1.6rem;
     }
@@ -38,17 +33,6 @@ type NewType = Message;
       text-align: left;
     }
 
-    .modal-header h1.modal-title {
-      font-size: 1.8em;
-    }
-
-    .modal-dialog {
-      width: 38%;
-      max-width: 1200px;
-      height: 20%;
-      margin: 0 auto;
-    }
-
     pre{
       font-weight: normal;
       font-size:0.9rem; 
@@ -58,11 +42,12 @@ type NewType = Message;
 })
 export class MessagesComponent implements OnInit {
 
+  volverUrl: string = '/dashboard';
+  usuario: Usuario | undefined;
   messages: Message[] = [];
   selectedMessage: Message | null = null;
   message_id: number = 0;
   mensajeSeleccionado!: Observable<Message | null>;
-  usuario: Usuario | undefined;
 
   constructor( private authService: AuthService,
                private activatedRoute: ActivatedRoute,
@@ -90,12 +75,14 @@ export class MessagesComponent implements OnInit {
     );
 
   }
- 
-
-  back(){
-    this.router.navigateByUrl('/dashboard');
-  }
   
+  setUsuario(usuario: Usuario):void {
+    this.usuario = usuario;
+  }
+
+  onUsuarioChange(usuario:Usuario):void {
+    this.setUsuario(usuario);
+  }
 
   cambiarStatus( message_id: number ){
     const token = localStorage.getItem('token');
@@ -115,6 +102,10 @@ export class MessagesComponent implements OnInit {
         console.log(error, 'El mensaje no se pudo actualizar');
       });
 
+  }
+
+  back(): void {
+    this.router.navigateByUrl('./dashboard');
   }
   
 

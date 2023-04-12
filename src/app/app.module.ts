@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptors';
 import { PagesModule } from './pages/pages.module';
+import { ProtectedModule } from './protected/protected.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PagesModule } from './pages/pages.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PagesModule
+    PagesModule,
+    ProtectedModule
   ],
   providers: [
     {
