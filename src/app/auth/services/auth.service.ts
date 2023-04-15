@@ -64,9 +64,9 @@ export class AuthService {
       }
     }
 
-    logout(){
-      localStorage.removeItem('token');
-      this.router.navigateByUrl('/auth');
+    logout(): void {
+        localStorage.removeItem('token');
+        this.router.navigateByUrl('/auth');
     }
 
     getMessages():Observable< Message[] >{
@@ -118,6 +118,13 @@ export class AuthService {
       const url = `${this.baseUrl}/message/sendingmessage`;
       const body = { firstname, lastname, phone, email, possible_appt, message }
       
+      return this.http.post(url, body);
+    }
+
+    createUser(firstname: string, lastname: string, username: string, password: string, dob:Date, role_id:number){
+      const url = `${this.baseUrl}/user/register`;
+      const body = { firstname, lastname, username, password, dob, role_id }
+
       return this.http.post(url, body);
     }
 
