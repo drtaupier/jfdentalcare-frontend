@@ -1,0 +1,70 @@
+$button-bg: #748D93;
+$button-bg2: #5195A6;
+$color: #F9F5F5;
+
+.wrapper{
+  width: 100vw;
+  height: 650px;
+  display: flex;
+  flex-direction: row;
+  background: $color;
+  .form-image{
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contact-form{
+    display: flex;
+    width: 50%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    .formulario{
+      width: 90%;
+      height: 90%;
+      margin-right: 60px;
+      padding-top: 20px;
+      h2{
+        margin-bottom: 30px;
+      }
+      form{
+        width: 90%;
+        width: 80%;
+        input{
+          &:focus{
+            box-shadow: none;
+            outline: none;
+          }
+        }
+        .form-select{
+          margin-left: 15px;
+          border: 1px solid #ccc;
+          border-radius: 4px; 
+          padding: 7px;
+          &:focus{
+            box-shadow: none;
+            outline: none;
+    
+          }
+        }
+      }
+    }
+    button{
+      padding: 8px;
+      width: 100px;
+      background-color: $button-bg;
+      color: $color;
+      border-radius: 4px;
+      margin-top: 20px;
+      border: none;
+      box-shadow: inherit(10px 10px 3px #000);
+      cursor: pointer;
+      &:hover{
+        background-color: $button-bg2;
+        transition-duration: 2s;
+      }
+    }
+  }
+}

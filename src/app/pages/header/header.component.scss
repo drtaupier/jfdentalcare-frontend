@@ -1,0 +1,234 @@
+$bg-color: #1F2B50;
+$text: #F9F5F5;
+$button-bg: #A49990;
+
+body {
+    padding-right: 0; // establece un padding inicial de cero
+  }
+  
+
+* {
+  font-size: 16px;
+}
+
+.navbar {
+  height: 90px;
+  width: 100vw;
+  min-width: 340px;
+  background-color: $bg-color;
+  color: $text;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  .logo{
+    margin-left: 200px;
+    h1 {
+    font-size: 1.5rem;
+  } 
+  }.address{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 15px;
+    .icon{
+        height: 100%;
+        padding: 2px;
+    }.direction{
+        width: 100%;
+        height: 100%;
+        padding-right: 5px;
+    }
+  }
+
+  .options {
+    margin-right: 40px;
+
+    nav {
+      .nav-links a{
+        color:#F9F5F5;
+        padding: 15px;
+      }
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        li{
+          padding: 10px 20px;
+          list-style: none;
+          &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 14px; // agrega un margen inferior de 5px al subrayado
+            text-decoration-thickness: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar .options nav ul li a {
+    color: #F9F5F5;
+    text-decoration: none;
+  }
+  
+
+  header{
+    position: sticky;
+    top: 0;
+  }
+
+  .navbar-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 3px rgba(47,37,56,0.5);
+    height: 70px;
+    width: 100%;
+    transition: padding-top 0.4s ease-in-out; /* Agregar la transición solo a la propiedad padding-top */
+    &.sticky {
+      height: 60px;
+      padding-top: 60px; /* Cambiar el padding-top en la clase .sticky */
+    }
+  }
+
+
+  
+  @media screen and (max-width: 1100px) {
+    
+    .navbar{
+      .logo{
+        margin-left: 150px;
+      } 
+    }
+    .navbar .options {
+      display: block !important;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+
+    .sidebar{
+      display: none;
+    }
+
+  }
+
+  @media screen and (max-width: 1050px){
+    .navbar{
+      .logo{
+        margin-left: 90px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1020px){
+    .navbar{
+      .logo{
+        margin-left: 90px;
+      }
+      .options{
+        margin-right: 5 px;
+        nav {
+          .nav-links li{
+            padding: 10px 5px;
+          }
+        }
+     }
+    }
+  }
+  
+
+  @media screen and (max-width: 940px) {
+
+    .logo{
+      margin-left: 150px;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100vh;
+      background-color: $bg-color;
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+    }
+    
+    .sidebar.show {
+      left: 0;
+    }
+    
+    .sidebar ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    
+    .sidebar li {
+      padding: 10px 20px;
+    }
+    
+    .sidebar li a {
+      color: $text;
+      text-decoration: none;
+    }
+    
+
+    .navbar .options {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -250px;
+      width: 250px;
+      background-color: $bg-color;
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+      &.show {
+        left: 0;
+      }
+      nav {
+        padding: 20px;
+        display: none;
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          a {
+            padding: 10px 0;
+            color: $text;
+            font-size: 1.2rem;
+            text-decoration: none;
+            &.active {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    .navbar-toggler {
+      display: block;
+    }
+    .navbar .logo {
+      margin-left: 20px;
+    }
+    .options.show + .navbar-toggler {
+      margin-right: 20px;
+    }
+  }
+  
+  
+
+
+
+
+
+
+  
+  

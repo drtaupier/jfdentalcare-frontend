@@ -1,4 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
 .selector-for-some-widget {
     box-sizing: content-box;
   }
+
+html{
+  scroll-behavior: smooth;
+}

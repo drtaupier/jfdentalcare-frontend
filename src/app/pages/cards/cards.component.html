@@ -1,0 +1,14 @@
+<div class="wrapper">
+
+    <div class="card" *ngFor="let item of cardsItems">
+      <div class="card-img">
+        <img src="{{ item.img }}" class="card-img-top" alt="{{ item.title }}">
+      </div>
+      <div class="card-body">
+        <h5><i class="{{ item.icono }}"></i> &nbsp; {{ item.title }}</h5>
+        <p class="card-text">{{ item.text }}</p>
+      </div>
+    </div>
+
+
+</div>

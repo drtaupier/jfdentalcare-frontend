@@ -1,7 +1,38 @@
-<div class="row mb-5">
-      <nav class="navbar navbar-dark bg-dark">
-          <h1 class="my-4 text-light">Welcome {{ usuario?.firstname | titlecase }}! </h1>
-          <button type="button" class="btn btn-success" (click)="logout()">Logout</button>
-        </nav>
-      <hr>
-</div>
+<header>
+
+  <nav class="navbar">
+    
+    <h1>JF Dental Care </h1>
+    
+    <div class="info">
+
+      <div class="options">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <i (click)="goToDashboard()" class="nav-link active pi pi-home" style="font-size:1.2rem; cursor:pointer;" ></i>
+          </li>
+
+          <li class="nav-item">
+            <i (click)="goToAttendedMessages()" class="nav-link pi pi-inbox" style="font-size:1.2rem; cursor:pointer;"></i>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle pi pi-user" style="font-size:1.2rem;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/dashboard/activeusers"><i class="pi pi-user" style="font-size:1.2rem; cursor:pointer;"></i>&nbsp; Users</a></li>
+              <li><a class="dropdown-item" routerLink="/dashboard/createuser"><i class="pi pi-user-plus" style="font-size:1.2rem"></i> &nbsp; Create users</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <h3>{{ usuario?.firstname | titlecase }} {{ usuario?.lastname | titlecase}}</h3>
+      <button type="button" class="logout" (click)="logout()"><i class="pi pi-sign-out" style="font-size: 1rem"></i> &nbsp; Logout</button>
+    </div>
+
+  </nav>
+</header>
+<hr>

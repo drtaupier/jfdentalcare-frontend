@@ -1,0 +1,28 @@
+<app-header [usuario]="usuario"/>
+<div class="row">
+    <div class="wrapper">
+        <div class="table-responsive">
+            <h2>Users</h2>
+            <table class="table table-striped my-custom-style d-justify-content-center align-items-center">
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>Date of Birth</th>
+                    <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of usuarios, let i = index">
+                        <td class="text-center">{{ i + 1}}</td>
+                        <td class="text-center">{{ user.firstname | titlecase }} {{ user.lastname | titlecase }}</td>
+                        <td class="text-center"> {{ user.username }} </td>
+                        <td class="text-center"> {{ user.status | titlecase}}</td>
+                        <td class="text-center"> {{ user.dob | date }} </td>
+                        <td class="text-center"> {{ user.user_role | uppercase}}</td>
+                    </tr>
+            </table>
+    </div>
+</div>

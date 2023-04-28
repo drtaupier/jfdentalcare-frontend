@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+$backg: #A49990;
+$color: #F9F5F5;
+$secundario: #A08382;
+.biography{
+    width: 100vw;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-image: url('../../../assets/images/fondo.png');
+    background-repeat: repeat;
+    .img-bio{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            animation: slide-in 1s ease-in;
+            height: 450px;
+            margin-left: 40px;
+        }
+    }.text-bio{
+        width: 60%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .bio-card{
+            width: 83%;
+            height: 45%;
+            border: none;
+            margin-right: 40px;
+            .card-title{
+                font-family: 'Playfair Display', serif;;
+                text-align: left;
+                font-size: 3em;
+                color: $color;
+                margin-bottom: 10px;
+            }
+            .card-text{
+                text-align: justify;
+                color: $color;
+                font-size: 1rem;
+            }
+        }
+    }
+
+}
+
+.slide-right {
+	-webkit-animation: slide-right 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-right 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+
+@-webkit-keyframes slide-right {
+    0% {
+      -webkit-transform: translateX(-60px);
+              transform: translateX(-60px);
+    }
+    100% {
+      -webkit-transform: translateX(100px);
+              transform: translateX(100px);
+    }
+  }
+  @keyframes slide-right {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(100px);
+              transform: translateX(100px);
+    }
+  }
+  

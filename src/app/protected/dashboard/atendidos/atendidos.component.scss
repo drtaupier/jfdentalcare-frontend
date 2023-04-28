@@ -1,0 +1,20 @@
+.wrapper{
+    margin: auto;
+    table{
+        thead{
+            th{
+                background-color: #A49990;
+                color: #F9F5F5;
+                text-align: center;
+                font-weight: normal;
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}

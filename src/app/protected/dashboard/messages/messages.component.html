@@ -1,41 +1,39 @@
-<div class="container-fluid">
-    <app-header/>
-
+<app-header [usuario]="usuario"></app-header>
+<div *ngIf="receivedMessage as receivedMessage">
     <div class="row">
-        <div class="col-md-9 mx-auto" *ngIf="selectedMessage">
-            <table class="table table-sm table-borderless">
-                <thead class="table-primary">
-                    <tr>
-                        <th class="text-left col-5" scope="col"><span style="margin-left: 25px; font-size:1.6rem;">{{ selectedMessage.firstname | titlecase }} {{ selectedMessage.lastname | titlecase}}</span> </th>
-                        <th class="text-right">{{selectedMessage.phone | phone}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-left col-2"><strong>E-mail: </strong></td>
-                        <td class="text-left">{{ selectedMessage.email }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left col-2"><strong>When: </strong></td>
-                        <td class="text-left">{{ selectedMessage.possible_appt }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left col-2"><strong> Message: </strong></td>
-                        <td class="text-left">{{ selectedMessage.message | titlecase }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left col-2"><strong>Date: </strong></td>
-                        <td class="text-left">{{ selectedMessage.fecha_mensaje | date: 'longDate'}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td colspan="2" class="text-right">
-                            <button class="btn btn-success" (click)="cambiarStatus( selectedMessage.message_id )">Attended</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <div class="col-md-9 mx-auto">
+        <table class="table table-sm table-borderless">
+          <thead class="table-primary">
+            <tr>
+              <th colspan="1" class="text-left col-3" scope="col"><span style="margin-left: 25px; font-size:1.6rem;">{{ receivedMessage.firstname | titlecase }} {{ receivedMessage.lastname | titlecase}}</span> </th>
+              <th class="col-3"></th>
+              <th class="text-right phone">{{receivedMessage.phone | phone}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left col-2"><strong>E-mail: </strong></td>
+              <td class="text-left">{{ receivedMessage.email }}</td>
+              <td rowspan="3" class="text-justify" style="font-style: italic;"> "{{ receivedMessage.message | capitalizarParrafo }}"</td>
+            </tr>
+            <tr>
+              <td class="text-left col-2"><strong>When: </strong></td>
+              <td class="text-left">{{ receivedMessage.possible_appt }}</td>
+            </tr>
+            <tr>
+              <td class="text-left col-2"><strong>Date: </strong></td>
+              <td class="text-left">{{ receivedMessage.fecha_mensaje | date: 'longDate'}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2" class="text-right">
+                <button type="button" (click)="back()">Back</button>
+                <button *ngIf="receivedMessage" class="btn btn-warning" (click)="cambiarStatus(receivedMessage.message_id)" >Attended</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-</div>
+  </div>
+  

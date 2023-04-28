@@ -1,0 +1,93 @@
+
+<app-header [usuario]="usuario"></app-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="wrapper">
+            <form [formGroup]="miFormulario"
+                    autocomplete="off"
+                    (ngSubmit)="createUsers()">
+
+                <h2 class="mb-3">Create User</h2>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="firstname" class="form-label">Firstname:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" formControlName="firstname" id="firstname" placeholder="Firstname">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="lastname" class="form-label">Lastname:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="Lastname">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="username" class="form-label">Username:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="email" class="form-control" id="username" formControlName="username" placeholder="Username">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="password" class="form-label">Password:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="confirmPassword" class="form-label">Repeat the Password:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Repeat the Password">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="dob" class="form-label">Date of Birth:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="date" class="form-control" id="dob" formControlName="dob" placeholder="Date of Birth">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="role_id" class="form-label">Role:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-select-lg" formControlName="role_id" aria-label="Selected">
+                            <option selected>-- Select --</option>
+                            <option value="1">Admin</option>
+                            <option value="2">User</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3 float-right">
+                    <button type="button" class="btn btn-info mr-3" (click)="volver()">Back</button>
+                    <button type="submit" class="btn btn-warning" [disabled]="miFormulario.invalid">Send</button>
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="submmited">The user was created successfully</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

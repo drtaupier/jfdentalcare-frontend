@@ -1,0 +1,38 @@
+$color: #F9F5F5;
+$bg-color: #1F2B50;
+.wrapper{
+    width: 100vw;
+    height: 290px;
+    background: $bg-color;
+    .footer{
+        height: 100%;
+        padding-top: 40px;
+        color: $color;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        h5{
+            font-size: 1em;
+            margin-bottom: 12px;
+        }
+        p{
+            font-size: 0.8em;
+            color: $color;
+        }
+    }
+    
+}
+
+.contact, .hours, .services{
+    line-height: 13px;
+}
+
+.address p{
+    line-height: 8px;
+}
+
+.address a{
+    margin-right: 15px;
+    color: #F9F5F5;
+    font-size: 1.2rem;
+}

@@ -16,8 +16,8 @@ import { ProtectedModule } from './protected/protected.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PagesModule,
-    ProtectedModule
+    ProtectedModule,
+    PagesModule
   ],
   providers: [
     {

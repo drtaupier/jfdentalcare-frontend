@@ -1,0 +1,175 @@
+<div class="wrapper">
+  <div class="form-image">
+
+  </div>
+  <div class="contact-form">
+    <div class="formulario">
+      <h2>Book an appointment</h2>
+      <form [formGroup]="miFormulario"
+            class="form-contact"
+            autocomplete="off"
+            (ngSubmit)="enviar()">
+        <div class="row mb-3">
+          <div class="col-3">
+            <label for="firstname" class="form-label">Firstname:</label>
+          </div>
+          <div class="col-9">
+            <input type="text" class="form-control shadow-none" formControlName="firstname" placeholder="Firstname">
+               <span class="form-text text-danger"
+                    *ngIf="campoNoEsValido('firstname')"> The firstname is required</span>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-3">
+            <label for="lastname" class="form-label">Lastname:</label>
+          </div>
+          <div class="col-9">
+            <input type="text" class="form-control shadow-none" formControlName="lastname" placeholder="Lastname">
+               <span class="form-text text-danger"
+                    *ngIf="campoNoEsValido('lastname')"> The lastname is required</span>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-3">
+            <label for="phone" class="form-label">Phone:</label>
+          </div>
+          <div class="col-9">
+            <input type="text" class="form-control shadow-none" formControlName="phone" placeholder="Phone">
+               <span class="form-text text-danger"
+                    *ngIf="campoNoEsValido('phone')"> The phone number is required</span>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-3">
+            <label for="email" class="form-label">E-mail:</label>
+          </div>
+          <div class="col-9">
+            <input type="text" class="form-control shadow-none" formControlName="email" placeholder="E-mail">
+               <span class="form-text text-danger"
+                    *ngIf="campoNoEsValido('phone')"> The E-mail is required</span>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-3">
+            <label for="possible_appt" class="form-label">When:</label>
+          </div>
+          <select class="form-select shadow-none" formControlName="possible_appt" aria-label="selected">
+            <option selected> --- Select ---</option>
+            <option value="1">As soon as possible</option>
+            <option value="2">Within the next 3 days</option>
+            <option value="3">to the next week</option>
+          </select>
+         </div>
+
+         <div class="row mb-3">
+          <div class="col-3">
+            <label for="message" class="form-label">Message:</label>
+           </div>
+           <div class="col-9">
+            <textarea class="form-control shadow-none" formControlName="message" rows="3"></textarea>
+          </div>
+        </div>
+
+         <div class="mb-3">
+          <button type="submit" [hidden]="!showButton" class="float-right" [disabled]="miFormulario.invalid">Send</button>
+          <div class="alert alert-success" *ngIf="sended"  role="alert">
+            The message has been sent successfully.
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container-fluid">
+  <div class="row max-height-650">
+    <div class="col-md-6 formulario">
+      <div class="form-column">
+    
+        <h2>Schedule your appointment</h2>
+    
+        <form [formGroup]="miFormulario"
+              class="form-contact" 
+              autocomplete="off"
+              (ngSubmit)="enviar()"> 
+           <div class="row mb-3">
+             <div class="col-3">
+               <label for="firstname" class="form-label">Firstname:</label>
+             </div>
+             <div class="col-9">
+               <input type="text" class="form-control shadow-none" formControlName="firstname" placeholder="Firstname">
+               <span class="form-text text-danger"
+                    *ngIf="campoNoEsValido('firstname')"> The firstname is required</span>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <div class="col-3">
+               <label for="lastname" class="form-label">Lastname:</label>
+             </div>
+             <div class="col-9">
+               <input type="text" class="form-control shadow-none" formControlName="lastname" placeholder="Lastname">
+               <span class="form-text text-danger" *ngIf="campoNoEsValido('lastname')">The lastname is required</span>
+            </div>
+           </div>
+           <div class="row mb-3">
+             <div class="col-3">
+               <label for="phone" class="form-label">Phone:</label>
+             </div>
+             <div class="col-9">
+               <input type="tel" class="form-control shadow-none" formControlName="phone" placeholder="(123)456-7890">
+               <span class="form-text text-danger"
+                    *ngIf="campoNoEsValido('phone')">
+                The phone number is required
+            </span>
+             </div>
+           </div> 
+           <div class="row mb-3">
+             <div class="col-3">
+               <label for="email" class="form-label">Email address:</label>
+             </div>
+             <div class="col-9">
+               <input type="email" class="form-control shadow-none" formControlName="email" placeholder="name@example.com">
+               <span class="form-text text-danger" *ngIf="campoNoEsValido('email')"> The e-mail is required </span>
+             </div>
+           </div>  
+           <div class="row mb-3">
+            <div class="col-3">
+              <label for="possible_appt" class="form-label">When:</label>
+            </div>
+            <select class="form-select shadow-none" formControlName="possible_appt" aria-label="selected">
+              <option selected> --- Select ---</option>
+              <option value="1">As soon as possible</option>
+              <option value="2">Within the next 3 days</option>
+              <option value="3">to the next week</option>
+            </select>
+           </div>
+           <div class="row mb-3">
+             <div class="col-3">
+               <label for="message" class="form-label">Message:</label>
+              </div>
+              <div class="col-9">
+               <textarea class="form-control shadow-none" formControlName="message" rows="3"></textarea>
+             </div>
+           </div>
+          <div class="mb-3">
+            <button type="submit" class="float-right" [disabled]="miFormulario.invalid">Send</button>
+          </div>
+          <div class="alert alert-success" *ngIf="sended"  role="alert">
+            The message has been sent successfully.
+          </div>
+        </form>
+      </div>
+    </div>
+
+      <div class="col-md-6">
+        <div class="imagen-contact">
+          <img src="...">
+        </div>
+      </div>
+      </div>
+  </div> -->

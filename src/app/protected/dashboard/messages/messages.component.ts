@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
-import { Observable } from 'rxjs';
-import { filter, switchMap } from "rxjs/operators";
+import { Subscription } from 'rxjs';
 import { Message, Usuario } from 'src/app/auth/interfaces/interfaces';
 import { AuthService } from 'src/app/auth/services/auth.service';
-
-
-type NewType = Message;
 
 @Component({
   selector: 'app-messages',
@@ -23,9 +19,11 @@ type NewType = Message;
       /* vertical-align: middle; // para alinear el contenido verticalmente */
     }
 
-    th{
-      font-size: 1.3rem;
-      height:20px;
+    .table th{
+      font-size: 1.2rem;
+      background-color: #748D93;
+      color: #F9F5F5;
+      font-weight: normal;
     }
 
     td{
@@ -37,77 +35,92 @@ type NewType = Message;
       font-weight: normal;
       font-size:0.9rem; 
     }
+
+    button[type="button"]{
+      margin-bottom: 40px;
+      padding: 5px 30px 9px 30px;
+      border-radius: 4px;
+      border: none;
+      background: #2F2538;
+      color: #F9F5F5;
+      margin-right:10px;
+      &:hover{
+        cursor: pointer;
+        background: #373825;
+        border: none;
+      }
+      &:active{
+        border:none;
+      }
+    }
     `
   ]
 })
 export class MessagesComponent implements OnInit {
 
-  volverUrl: string = '/dashboard';
   usuario: Usuario | undefined;
-  messages: Message[] = [];
-  selectedMessage: Message | null = null;
-  message_id: number = 0;
-  mensajeSeleccionado!: Observable<Message | null>;
+  // receivedMessage!: Message;
+  receivedMessage: Message | null = null;
+
+  private messageSubscription! : Subscription;
 
   constructor( private authService: AuthService,
-               private activatedRoute: ActivatedRoute,
-               private router : Router ) { }
+               private router : Router) { }
+  
+    ngOnInit(): void {
+      const token = localStorage.getItem('token')
+      if(!token){
+        this.router.navigate(['/auth']);
+        return;
+      }
 
-  ngOnInit(): void {
-    const token = localStorage.getItem('token')
-    if(!token){
-      this.router.navigateByUrl('/auth');
-      return;
+      //Recibo el mensaje a traves de un Observable:
+      this.messageSubscription = this.authService.message$
+      .subscribe(message => {
+      this.receivedMessage = message;
+    });
+
+
+
+
+      this.getUser();
+
     }
 
-    this.activatedRoute.queryParams
-    .pipe(
-      switchMap(params => this.authService.getMessage(params['message_id'])),
-      filter(mensaje => mensaje !== null)
-    )
-    .subscribe(
-      message => {
-        this.selectedMessage = message;
-      },
-      error => {
-        console.error(error);
-      }
-    );
-
-  }
-  
-  setUsuario(usuario: Usuario):void {
-    this.usuario = usuario;
+  getUser(): void{
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const user_id = decodedToken.user_id;
+      this.authService.getUserData(token, user_id)
+      .subscribe((resp) => {
+        this.usuario = resp.usuario;
+      });
+    }
   }
 
-  onUsuarioChange(usuario:Usuario):void {
-    this.setUsuario(usuario);
+  cambiarStatus(message_id: number){
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const user_id = decodedToken.user_id;
+      const status_id = 6;
+      this.authService.createMessageUsers(token, message_id, status_id, user_id).subscribe( mensaje => console.log(mensaje) )
+        this.router.navigate(['/dashboard']);
+    }
   }
 
-  cambiarStatus( message_id: number ){
+
+  back(): void {
     const token = localStorage.getItem('token');
     if(!token){
       this.router.navigateByUrl('/auth');
       return;
+    }else{
+      this.router.navigateByUrl('/dashboard');
     }
-    const decodedToken: any = jwt_decode(token);
-    const user_id = decodedToken.user_id;
-    this.authService.updateMessageStatus(token, user_id, message_id)
-      .subscribe(response => {
-        console.log(response.message_users_id);
-        console.log(response.fecha_cambio);
-        console.log('El mensaje fue actualizado con exito!');
-        this.router.navigateByUrl('/dashboard');
-      }, error => {
-        console.log(error, 'El mensaje no se pudo actualizar');
-      });
-
   }
-
-  back(): void {
-    this.router.navigateByUrl('./dashboard');
-  }
-  
 
 }
+
 

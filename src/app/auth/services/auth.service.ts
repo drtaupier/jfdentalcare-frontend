@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of, throwError } from "rxjs";
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, Subject } from "rxjs";
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -17,12 +18,16 @@ import { Message, MessageStatus, Usuario } from '../interfaces/interfaces';
 export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
+  messageUpdated$ = new Subject<void>();
   
   messages: Message[] = [];
+  messageUser: MessageStatus[] = [];
 
   constructor( private http: HttpClient,
                private router: Router) { }
   
+
+                 
   login(credentials: { username: string, password: string } ): Observable<{ token: string, user_id: number }> {
     return this.http.post<{ token: string, user_id: number }>(`${this.baseUrl}/login`, credentials)
       .pipe(
@@ -69,49 +74,56 @@ export class AuthService {
         this.router.navigateByUrl('/auth');
     }
 
-    getMessages():Observable< Message[] >{
-      const token = localStorage.getItem('token');
-      return this.http.get<Message[]>(`${this.baseUrl}/messages`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-    }
     
-    getMessage(message_id: number): Observable<Message> {
-      const token = localStorage.getItem('token');
-      if (token) {
-        return this.http.get<Message>(`${this.baseUrl}/messages/${message_id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }).pipe(
-          catchError(error => {
-            console.log(error);
-            return throwError("Error al obtener un mensaje");
-          })
-        );
-      } else {
-        return throwError('No se encontró token')
-        
-      }
+    
+    
+    
+    
+    //actualiza el estado de los mensajes
+    
+
+    
+    //Me trae mensajes atendidos:
+    getMessageUserAttended():Observable<MessageStatus[]>{
+      return this.http.get<MessageStatus[]>(`${this.baseUrl}/message-users/showattended`);
     }
 
-    updateMessageStatus(token:string, user_id:number, message_id:number):Observable<MessageStatus>{
+    
+
+    
+
+    
+
+    //Crea usuarios:
+    createUser(firstname: string, lastname: string, username: string, password: string, dob:Date, role_id:number){
+      const url = `${this.baseUrl}/user/register`;
+      const body = { firstname, lastname, username, password, dob, role_id }
+
+      return this.http.post(url, body);
+    }
+
+
+    getActiveUsers():Observable<Usuario[]>{
+      return this.http.get<Usuario[]>(`${this.baseUrl}/user/active`);
+    }
+
+    backToActiveAgain(token:string, user_id:number, message_id:number):Observable<MessageStatus>{
       const url = `${this.baseUrl}/message-users/${message_id}/6/${user_id}`
-      const body = { status: 6 };
+      const body = { status: 1 };
       const headers = {
         Authorization: `Bearer ${token}`
       };
       return this.http.post<MessageStatus>(url, body, { headers });
     }
-    
-    getMessageUser(){
-      const url = `${this.baseUrl}/message-users/showattended`
-    }
 
-    getMensajes(){
-      this.http.get<Message[]>(`${this.baseUrl}/messages/`)
+
+    
+    //Messages:
+    private messageSource = new BehaviorSubject<Message | null>(null);
+    message$ = this.messageSource.asObservable();
+    
+    sendingMessage(message:Message){
+      this.messageSource.next(message)
     }
 
     sendMessage(firstname: string, lastname: string, phone: string, email: string, possible_appt: number, message: string){
@@ -121,12 +133,71 @@ export class AuthService {
       return this.http.post(url, body);
     }
 
-    createUser(firstname: string, lastname: string, username: string, password: string, dob:Date, role_id:number){
-      const url = `${this.baseUrl}/user/register`;
-      const body = { firstname, lastname, username, password, dob, role_id }
-
-      return this.http.post(url, body);
+    //Trae un mensaje específico
+    getMessage(token: string, message_id: number): Observable<Message> {
+      return this.http.get<Message>(`${this.baseUrl}/messages/${message_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     }
+    
+
+    //Trae todos los mensajes al dashboard
+    getMessages():Observable< Message[] >{
+      const token = localStorage.getItem('token');
+      return this.http.get<Message[]>(`${this.baseUrl}/messages`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    }
+        
+    
+    //Message_users:
+    private messageUserSource = new BehaviorSubject<MessageStatus | null>(null);
+    messageUser$ = this.messageUserSource.asObservable();
+
+    sendingMessageUser(message:MessageStatus){
+      this.messageUserSource.next(message)
+    }
+
+    //Crea la relación entre message users:
+    createMessageUsers(token:string, message_id:number, status_id:number, user_id:number):Observable<MessageStatus>{
+      const url = `${this.baseUrl}/message-users/${message_id}/${status_id}/${user_id}`;
+      const body = { message_id, status_id, user_id };
+      const headers: HttpHeaders = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      });
+      return this.http.post<MessageStatus>(url, body, { headers }); // Actualización aquí
+    }
+
+    updateMessageStatus(token: string, user_id: number, message_users_id: number, status_id: number): Observable<MessageStatus> {
+      const url = `${this.baseUrl}/message-users/edit`;
+    
+      const body: { message_users_id: number; status_id: number; user_id: number } = {
+        message_users_id,
+        status_id,
+        user_id,
+      };
+    
+      const headers: HttpHeaders = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      });
+    
+      return this.http.put<MessageStatus>(url, body, { headers });
+    }
+    
+    getMessageUserFromMessage(message_id:number):Observable<MessageStatus>{
+      return this.http.get<MessageStatus>(`${this.baseUrl}/message-user-Message/${message_id}`);
+    }
+
+    //Me trae un mensaje nuevo específico:
+    getNewMessageUsersByID(token: string, message_users_id: number):Observable<MessageStatus>{
+      const headers = new HttpHeaders().set('Authorization', 'Bearer' + token )
+      return this.http.get<MessageStatus>(`${this.baseUrl}/messageuser-newMessage/${message_users_id}`);
+    }
+    
 
   }
 
