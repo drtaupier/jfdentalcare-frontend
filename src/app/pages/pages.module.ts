@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { IntroComponent } from './intro/intro.component';
 import { LocationComponent } from './location/location.component';
 import { MainComponent } from './main/main.component';
+import { HamburguesaComponent } from './header/hamburguesa/hamburguesa.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MainComponent } from './main/main.component';
     CardsComponent,
     BiographyComponent,
     IntroComponent,
-    LocationComponent
+    LocationComponent,
+    HamburguesaComponent
   ],
   imports: [
     CommonModule,

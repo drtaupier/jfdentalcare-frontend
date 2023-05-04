@@ -99,8 +99,13 @@ body {
     }
   }
 
+  // .options {
+  //   display: none;
+  // }
 
   
+
+
   @media screen and (max-width: 1100px) {
     
     .navbar{
@@ -109,7 +114,7 @@ body {
       } 
     }
     .navbar .options {
-      display: block !important;
+      // display: block !important;
       margin-right: 10px;
       margin-top: 10px;
     }
@@ -223,7 +228,11 @@ body {
     }
   }
   
-  
+  @media (min-width: 768px) {
+    .options {
+      display: block;
+    }
+  }
 
 
 

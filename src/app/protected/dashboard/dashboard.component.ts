@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
-import { EMPTY, Observable, Subject, Subscription, timer } from 'rxjs';
-import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { EMPTY, Observable, Subject, Subscription, switchMap, takeUntil, tap, timer } from 'rxjs';
 import { Message, Usuario } from 'src/app/auth/interfaces/interfaces';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -25,7 +24,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   `
   ]
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent  implements OnInit {
   
   usuario: Usuario | undefined;
   messages: Message[] = [];
@@ -38,6 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor( private authService: AuthService,
                private router: Router ) {}
+  
 
   
   ngOnInit() {
@@ -62,8 +62,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     .pipe(switchMap(() => this.getUser()))
     .subscribe();
 }
-              
-
+  
   
   getUser(): Observable<any> { // Cambia el tipo de retorno a Observable<any>
     const token = localStorage.getItem('token');
@@ -103,6 +102,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
   
-
 
 }

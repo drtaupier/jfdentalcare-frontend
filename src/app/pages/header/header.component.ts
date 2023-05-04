@@ -7,6 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   sticky = false;
+  menuOpen = false;
 
   constructor() { }
 
@@ -23,6 +24,10 @@ export class HeaderComponent implements OnInit {
     } else {
       document.body.classList.remove('navbar-sticky');
     }
+  }
+
+  toggleMenu(){
+    this.menuOpen = !this.menuOpen;
   }
 }
 

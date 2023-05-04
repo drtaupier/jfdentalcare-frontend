@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -15,8 +15,8 @@ showButton: boolean = true;
   miFormulario: FormGroup = this.fb.group ({
     firstname:      [ '', [ Validators.required ] ],
     lastname:       [ '', [ Validators.required ] ],
-    phone:          [ '', [ Validators.required] ],
-    email:          [ '', [ Validators.required, Validators.email] ],
+    phone:          [ '', [ Validators.required, this.isNumber()] ],
+    email:          [ '', [  Validators.email ] ],
     possible_appt:  [ '', [ Validators.required] ],
     message:        [ '', [ Validators.required] ]
   })
@@ -39,5 +39,22 @@ showButton: boolean = true;
     return this.miFormulario.controls[campo].errors
     && this.miFormulario.controls[campo].touched
   }
+
+  isNumber():ValidatorFn{
+    return(control: AbstractControl): {[key: string]:any } | null => {
+      const value = control.value;
+      const isValid = !isNaN(value);
+      return isValid ? null : { notNumber: {value: control.value } };
+    };
+  }
   
+  emailValidator():ValidatorFn{
+    return (control: AbstractControl): { [key: string ]: any } | null => {
+      const value = control.value;
+      const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      const isValid = emailRegex.test(value);
+      return isValid ? null : {invalidEmail: { value: control.value } };
+    };
+  }
+
 }

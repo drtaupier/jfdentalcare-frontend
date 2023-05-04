@@ -59,9 +59,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class MessagesComponent implements OnInit {
 
   usuario: Usuario | undefined;
-  // receivedMessage!: Message;
   receivedMessage: Message | null = null;
-
+  receivedUser: Usuario | null = null;
   private messageSubscription! : Subscription;
 
   constructor( private authService: AuthService,
@@ -77,14 +76,11 @@ export class MessagesComponent implements OnInit {
       //Recibo el mensaje a traves de un Observable:
       this.messageSubscription = this.authService.message$
       .subscribe(message => {
-      this.receivedMessage = message;
-    });
-
-
-
+        this.receivedMessage = message;
+      });
 
       this.getUser();
-
+      
     }
 
   getUser(): void{

@@ -28,6 +28,7 @@ $bg-card2: #748D93;
         height: 55%;
         img{
             height: 100%;
+            object-fit: cover;
             font-weight: bold;
         }
     }.card-body{

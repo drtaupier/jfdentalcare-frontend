@@ -1,6 +1,8 @@
 <div class="wrapper">
   <div class="form-image">
-
+    <div class="img-container">
+      <img src="'../../../../../assets/images/img5.jpg" alt="apppointment" />
+    </div>
   </div>
   <div class="contact-form">
     <div class="formulario">
@@ -47,9 +49,9 @@
             <label for="email" class="form-label">E-mail:</label>
           </div>
           <div class="col-9">
-            <input type="text" class="form-control shadow-none" formControlName="email" placeholder="E-mail">
+            <input type="email" class="form-control shadow-none" formControlName="email" placeholder="name@mysite.com">
                <span class="form-text text-danger"
-                    *ngIf="campoNoEsValido('phone')"> The E-mail is required</span>
+                    *ngIf="campoNoEsValido('email')">Enter a valid email address</span>
           </div>
         </div>
 
@@ -70,17 +72,16 @@
             <label for="message" class="form-label">Message:</label>
            </div>
            <div class="col-9">
-            <textarea class="form-control shadow-none" formControlName="message" rows="3"></textarea>
+            <textarea class="form-control shadow-none" formControlName="message" rows="3" placeholder="How can I help you?"></textarea>
           </div>
         </div>
 
-         <div class="mb-3">
+        <div class="mb-3">
           <button type="submit" [hidden]="!showButton" class="float-right" [disabled]="miFormulario.invalid">Send</button>
-          <div class="alert alert-success" *ngIf="sended"  role="alert">
-            The message has been sent successfully.
-          </div>
         </div>
-
+        <div class="alert alert-success" *ngIf="sended" role="alert">
+            The message has been sent successfully.
+        </div>
       </form>
     </div>
   </div>

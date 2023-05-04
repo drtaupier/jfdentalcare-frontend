@@ -1,0 +1,18 @@
+.hamburguer{
+    cursor: pointer;
+    display: none;
+}
+
+.show-menu{
+    display: block;
+}
+
+.hide-menu{
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .hamburguer{
+        display: block;
+    }
+}

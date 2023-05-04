@@ -45,6 +45,22 @@ export class AuthService {
           );
         })
       );
+    }
+
+  
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/auth');
+  }
+
+
+  //Users:
+
+  private userSource = new BehaviorSubject<Usuario | null>(null);
+  user$ = this.userSource.asObservable();
+
+  sendigUser(user:Usuario){
+    this.userSource.next(user)
   }
 
   getUserData(token: string, user_id: number): Observable<{ token: string, usuario: Usuario }> {
@@ -69,31 +85,6 @@ export class AuthService {
       }
     }
 
-    logout(): void {
-        localStorage.removeItem('token');
-        this.router.navigateByUrl('/auth');
-    }
-
-    
-    
-    
-    
-    
-    //actualiza el estado de los mensajes
-    
-
-    
-    //Me trae mensajes atendidos:
-    getMessageUserAttended():Observable<MessageStatus[]>{
-      return this.http.get<MessageStatus[]>(`${this.baseUrl}/message-users/showattended`);
-    }
-
-    
-
-    
-
-    
-
     //Crea usuarios:
     createUser(firstname: string, lastname: string, username: string, password: string, dob:Date, role_id:number){
       const url = `${this.baseUrl}/user/register`;
@@ -105,15 +96,6 @@ export class AuthService {
 
     getActiveUsers():Observable<Usuario[]>{
       return this.http.get<Usuario[]>(`${this.baseUrl}/user/active`);
-    }
-
-    backToActiveAgain(token:string, user_id:number, message_id:number):Observable<MessageStatus>{
-      const url = `${this.baseUrl}/message-users/${message_id}/6/${user_id}`
-      const body = { status: 1 };
-      const headers = {
-        Authorization: `Bearer ${token}`
-      };
-      return this.http.post<MessageStatus>(url, body, { headers });
     }
 
 
@@ -197,7 +179,20 @@ export class AuthService {
       const headers = new HttpHeaders().set('Authorization', 'Bearer' + token )
       return this.http.get<MessageStatus>(`${this.baseUrl}/messageuser-newMessage/${message_users_id}`);
     }
+
+     //Me trae mensajes atendidos:
+     getMessageUserAttended():Observable<MessageStatus[]>{
+      return this.http.get<MessageStatus[]>(`${this.baseUrl}/message-users/showattended`);
+    }
     
+    backToActiveAgain(token:string, user_id:number, message_id:number):Observable<MessageStatus>{
+      const url = `${this.baseUrl}/message-users/${message_id}/6/${user_id}`
+      const body = { status: 1 };
+      const headers = {
+        Authorization: `Bearer ${token}`
+      };
+      return this.http.post<MessageStatus>(url, body, { headers });
+    }
 
   }
 
