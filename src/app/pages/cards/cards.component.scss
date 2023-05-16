@@ -1,6 +1,7 @@
 $bg-color: #F9F5F5;
 $bg-card: #94929D;
 $bg-card2: #748D93;
+$bg-card3: #44445F;
 
 .wrapper{
     display: flex;
@@ -11,6 +12,7 @@ $bg-card2: #748D93;
     width: 100vw;
     gap: 25px;
     background-color: $bg-color;
+    min-width: 320px;
 }
 .card{
     display: flex;
@@ -20,7 +22,7 @@ $bg-card2: #748D93;
     width: 340px;
     height: 400px;
     flex-direction: column;
-    background-color: $bg-card2;
+    background-color: $bg-card3;
     // box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(0,0,0,0.3),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
@@ -28,6 +30,7 @@ $bg-card2: #748D93;
         height: 55%;
         img{
             height: 100%;
+            width: 100%;
             object-fit: cover;
             font-weight: bold;
         }
@@ -40,4 +43,19 @@ $bg-card2: #748D93;
             color:$bg-color;
         }
     }
+}
+
+
+@media screen and (max-width: 760px){
+    .wrapper{
+        height: auto;
+        flex-direction: column;
+        .card:nth-child(1){
+            margin-top: 20px;
+        }
+        .card:nth-child(3){
+            margin-bottom: 20px;
+        }
+    }
+
 }

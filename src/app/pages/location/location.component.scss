@@ -1,9 +1,11 @@
 .wrapper{
-    display: flex;
     justify-content: center;
+    height: 650px;
+    width: 100vw;
+    min-width: 320px;
+    display: flex;
     align-items: center;
     flex-direction: row;
-    height: 650px;
     background-image: url(../../../assets/images/fondo2.jpg);
     background-repeat: repeat;
     .text-location{
@@ -29,7 +31,163 @@
             img{
                 width: 100%;
                 height: 380px;
+                object-fit: cover;
+                object-position: 50%;
             }
         }
     }
+}
+
+@media screen and (max-width: 1149px){
+    .wrapper {
+        .img-location {
+            justify-content: center;
+            .imagen-container {
+                img{
+                    height: 300px;
+                }
+            }
+        } 
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .wrapper{
+        .text-location{
+            padding: 0;
+            .texto{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-left: 60px;
+            }
+        }
+        .img-location{
+            display: flex;
+            justify-content: center;
+            .imagen-container{
+                img{
+                    height: 300px;
+                }          
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 760px){
+    .wrapper{
+        .text-location{
+            margin: 20px;
+            .texto{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-left: 20px;
+                h2{
+                    font-size: 2rem;
+                }
+                p{
+                    font-size: 1rem;
+                    line-height: 20px;
+                }
+            }
+        }
+        .img-location{
+            display: flex;
+            justify-content: center;
+            .imagen-container{
+                width: 100%;
+                margin-right: 20px;
+                img{
+                    height: 220px;
+                }          
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 710px){
+    .wrapper{
+        height: auto;
+        .text-location{
+            margin: 60px 50px 60px 50px;
+            .texto{
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 700px){
+    .wrapper{
+        flex-direction: column;
+        .text-location{
+            height: 50%;
+            width: 100%;
+            margin: 50px 50px 50px 100px;
+            .texto{
+                h2{
+                    font-size: 2rem;
+                }
+                p{
+                    font-size: 1rem;
+                }
+            }
+        }
+        .img-location{
+            height: 50%;
+            width: 70%;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .wrapper{
+        .text-location{
+            .texto{
+                margin-left: 20px;
+                p{
+                    margin-right: 25px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .wrapper{
+        .text-location{
+            .texto{
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px){
+    .wrapper{
+        .img-location{
+            width: 85%;
+        }
+        .text-location{
+            width: 90%;
+            .texto{
+                margin-left: -13px;
+                p{
+                    margin-right: 0;
+                }
+                
+            }
+        }.img-location{
+            width: 100%;
+            padding-left: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+
 }

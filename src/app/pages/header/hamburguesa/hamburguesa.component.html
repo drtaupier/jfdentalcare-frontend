@@ -1,6 +1,17 @@
-<div class="hamburguer" (click)="toggleMenu()">
-    <span><i class="pi pi-bars"></i></span>
+<div class="hamburguer" id="hamburguer">
+    <span><i class="pi pi-bars" (click)="showMenu()"></i></span>
     <div class="navbar-brand">
-
+        <div class="responsive-menu">
+            <span class="close-btn" (click)="closeMenu()"><i class="pi pi-times"></i></span>
+            <h2>JF Dental Care</h2>
+            <hr>
+            <ul>
+                <li><a href="/" routerLinkActive="active">Home</a></li>
+                <li><a href="#bio" routerLinkActive="active">About the doctor</a></li>
+                <li><a href="#service" routerLinkActive="active">Our Service</a></li>
+                <li><a href="#contact" routerLinkActive="active">Book an appointment</a></li>
+                <li><a routerLink="/auth" routerLinkActive="active">Login</a></li>
+            </ul>
+        </div>
     </div>
 </div>

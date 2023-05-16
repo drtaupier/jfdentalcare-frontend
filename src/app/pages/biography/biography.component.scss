@@ -6,6 +6,7 @@ $secundario: #A08382;
     width: 100vw;
     height: 650px;
     display: flex;
+    min-width: 320px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -20,7 +21,7 @@ $secundario: #A08382;
         img{
             animation: slide-in 1s ease-in;
             height: 450px;
-            margin-left: 40px;
+            margin-left: 35px;
         }
     }.text-bio{
         width: 60%;
@@ -36,7 +37,7 @@ $secundario: #A08382;
             .card-title{
                 font-family: 'Playfair Display', serif;;
                 text-align: left;
-                font-size: 3em;
+                font-size: 2.3em;
                 color: $color;
                 margin-bottom: 10px;
             }
@@ -78,3 +79,103 @@ $secundario: #A08382;
     }
   }
   
+
+  @media screen and (max-width: 1149px){
+    .biography .img-bio img{
+        margin-left: -100px;
+    }
+  }
+  
+  @media screen and (max-width: 1000px){
+    .biography{
+        .img-bio
+            img{
+                margin-left: -100px;
+            }
+        .text-bio>.bio-card {
+            margin-right: -40px;
+        }
+    } 
+  }
+  
+  @media screen and (max-width: 850px){
+    .biography{
+        .img-bio{
+            img{
+                margin-left: -95px;
+            }
+        }
+        .text-bio>.bio-card {
+            margin-right: -20px;
+        }
+    } 
+  }
+  
+  @media screen and (max-width: 800px){
+    .biography{
+        .text-bio{
+            .bio-card{
+                margin-right: -10%;
+                .card-body{
+                    h5{
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+  }
+
+  @media screen and (max-width: 760px){
+    .biography{
+        flex-direction: column;
+        height: auto;
+        .img-bio{
+            width: 100%;
+            height: 60%;
+            margin-top: 30px;
+            justify-content: center;
+            margin-left: -20%;
+            img{
+                height: 90%;
+                // margin-left: -95px;
+            }
+        }
+        
+        .text-bio{
+            width: 100%;
+            align-items: flex-start;
+            .bio-card {
+                height: 50%;
+                width: 90%;
+                margin-bottom: 30px;
+                .card-body{
+                    h5{
+                        font-size: 1.8rem;
+                    }
+                    p{
+                        margin-right: 20px;
+                    }
+                }
+                // margin-right: -20px;
+                }
+            }
+        }
+
+    }
+
+
+
+    @media screen and (max-width: 450px){
+        .biography{
+            .img-bio{
+                img{
+                    width: 70%;
+                    margin-left: -129px;
+                }
+            }
+            .text-bio{
+                margin-right: 45px;
+            }
+        }
+    }
