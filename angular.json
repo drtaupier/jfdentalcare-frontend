@@ -69,9 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
           "port": 8080,
-          "host": "0.0.0.0"
-          },
-          "configurations": {
+          "host": "0.0.0.0",
+          "disableHostCheck": true
+        },
+        "configurations": {
             "production": {
               "browserTarget": "jfdental:build:production"
             },
