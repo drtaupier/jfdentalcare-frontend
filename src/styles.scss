@@ -6,10 +6,8 @@
   box-sizing: border-box;
 }
 
-.selector-for-some-widget {
-    box-sizing: content-box;
-  }
-
 html{
+  width: 100vw;
+  min-width: 320px;
   scroll-behavior: smooth;
 }
