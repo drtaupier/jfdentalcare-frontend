@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://jfdentalcare.com'
+  baseUrl: 'jfdentalcare-g7svr-postgres.jfdentalcare-g7svr.svc.cluster.local'
 };
