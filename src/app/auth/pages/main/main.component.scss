@@ -1,0 +1,54 @@
+$color: #F9F5F5;
+$bg-color: #1F2B50;
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    min-width: 320px;
+    // background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .formulario{
+        width: 80%;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // background: #000;
+        h2{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        form{
+            width: 70%;
+            height: 400px;
+            // label{
+            //     margin-right: 9px;
+            // }
+            input{
+                padding: 6px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 60%;
+                margin: 10px 0px 10px 160px;
+            }
+            input[type="submit"]{
+                margin-top: 15px;
+                background-color: $bg-color;
+                color: $color;
+            }
+        }
+    }
+    .footer{
+        width: 100vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $bg-color;
+        color: $color;
+    }
+}
