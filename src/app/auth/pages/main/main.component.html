@@ -1,6 +1,21 @@
 <div class="wrapper">
     <div class="formulario">
-        <router-outlet></router-outlet>
+        <h2>Login</h2>
+        <form autocomplete="off" 
+            [formGroup]="miFormulario"
+            (ngSubmit)="login()">
+            
+            <div class="form-input">
+                <input type="text" name="username" formControlName="username" placeholder="name@example.com">
+            </div>
+
+            <div class="form-input">
+                <input type="password" name="password" formControlName="password" placeholder="Password">
+            </div>
+            <div class="form-input">
+                <input type="submit" value="Login">
+            </div>
+        </form>
     </div>
     <div class="footer">
         <div class="footer-container">
