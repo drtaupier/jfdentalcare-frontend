@@ -1,13 +1,13 @@
 .wrapper{
-    justify-content: center;
     height: 650px;
     width: 100vw;
     min-width: 320px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
     background-image: url(../../../assets/images/fondo2.jpg);
     background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     .text-location{
         width: 50%;
         padding: 30px 30px 30px 80px;
@@ -21,7 +21,6 @@
                 text-align: justify;
             }
         }
-        
     }.img-location{
         width: 50%;
         .imagen-container{
