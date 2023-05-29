@@ -5,7 +5,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styles: []
+  styles: [
+    `
+    .wrapper{
+      width: 100vw;
+    }
+    `
+  ]
 
 })
 
