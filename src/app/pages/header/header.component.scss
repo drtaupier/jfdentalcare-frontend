@@ -139,4 +139,28 @@ $button-bg: #A49990;
         width: 50%;
       }
     }
-  }  
+  }
+  
+  @media screen and (max-width: 353px){
+    .navbar{
+      width: 100vw;
+      .logo{
+        width: 50%;
+        h1{
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 343px){
+    .navbar{
+      width: 100vw;
+      .logo{
+        width: 50%;
+        h1{
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
