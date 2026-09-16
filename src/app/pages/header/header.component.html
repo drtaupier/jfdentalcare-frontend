@@ -1,20 +1,47 @@
-<div class="navbar navbar-not-sticky" [class.navbar-sticky]="sticky" [class.sticky-header]="sticky">
-  <div class="logo">
-    <h1>JF Dental Care</h1> 
-  </div>
-  <app-hamburguesa></app-hamburguesa>
-  <div class="options">
-    <nav>
-      <ul>
-        <li><a href="/" routerLinkActive="active">Home</a></li>
-        <li><a href="#bio" routerLinkActive="active">About the doctor</a></li>
-        <li><a href="#service" routerLinkActive="active">Our Service</a></li>
-        <li><a href="#contact" routerLinkActive="active">Book an appointment</a></li>
-        <li><a routerLink="/auth" routerLinkActive="active">Login</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
+<header class="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="#home" (click)="closeMenu()">
+      <span class="brand-logo">
+        <img src="assets/images/jf-logo.png" alt="JF Dental Care logo" />
+      </span>
 
+      <span class="brand-copy">
+        <strong>JF Dental Care</strong>
+        <small>Family dentistry</small>
+      </span>
+    </a>
 
-<!-- [ngClass]="{ 'show-menu': menuOpen, 'hide-menu': !menuOpen}" -->
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Toggle navigation menu"
+      [attr.aria-expanded]="menuOpen"
+      (click)="toggleMenu()"
+    >
+      <span [class.open]="menuOpen"></span>
+      <span [class.open]="menuOpen"></span>
+      <span [class.open]="menuOpen"></span>
+    </button>
+
+    <div class="navigation" [class.navigation--open]="menuOpen">
+      <a href="#home" (click)="closeMenu()">Home</a>
+      <a href="#bio" (click)="closeMenu()">Meet the doctor</a>
+      <a href="#service" (click)="closeMenu()">Services</a>
+
+      <a class="login-link" routerLink="/auth" (click)="closeMenu()"> Login </a>
+
+      <a class="appointment-link" href="#contact" (click)="closeMenu()">
+        Book appointment
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </nav>
+
+  <button
+    *ngIf="menuOpen"
+    class="menu-backdrop"
+    type="button"
+    aria-label="Close navigation menu"
+    (click)="closeMenu()"
+  ></button>
+</header>
