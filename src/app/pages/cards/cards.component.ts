@@ -4,30 +4,27 @@ import { CardItems } from 'src/app/auth/interfaces/interfaces';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.scss']
+  styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent {
-
   cardsItems: CardItems[] = [
     {
-      img: '../../../assets/images/img4.png',
+      img: 'assets/images/img4.png',
       icono: 'pi pi-check',
       title: 'Dental Emergencies',
-      text: "Some quick example text to build on the card title and make up the bulk of the card's content."
+      text: 'Prompt care for tooth pain, broken teeth, swelling, and other urgent dental concerns. Contact our team so we can help you find relief.',
     },
     {
-      img: '../../../assets/images/img3.png',
+      img: 'assets/images/img3.png',
       icono: 'pi pi-check',
       title: 'Invisalign',
-      text: "Some quick example text to build on the card title and make up the bulk of the card's content."
+      text: 'A discreet and comfortable way to straighten your smile using clear, removable aligners designed around your treatment needs.',
     },
     {
-      img: '../../../assets/images/prueba.jpg',
+      img: 'assets/images/prueba.jpg',
       icono: 'pi pi-check',
       title: 'Oral Surgery',
-      text: "Some quick example text to build on the card title and make up the bulk of the card's content."
+      text: 'Thoughtful surgical dental care focused on your comfort, safety, and recovery, with clear guidance throughout every step.',
     },
-  ]
-    
-  
+  ];
 }

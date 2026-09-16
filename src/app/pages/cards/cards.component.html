@@ -1,14 +1,48 @@
-<div class="wrapper">
+<section class="services-section" aria-labelledby="services-title">
+  <div class="services-container">
+    <div class="services-heading">
+      <div>
+        <span class="section-label">Our services</span>
 
-    <div class="card" *ngFor="let item of cardsItems">
-      <div class="card-img">
-        <img src="{{ item.img }}" class="card-img-top" alt="{{ item.title }}">
+        <h2 id="services-title">Dental care designed around you</h2>
       </div>
-      <div class="card-body">
-        <h5><i class="{{ item.icono }}"></i> &nbsp; {{ item.title }}</h5>
-        <p class="card-text">{{ item.text }}</p>
-      </div>
+
+      <p>
+        From urgent dental needs to treatments that improve your smile, our team
+        provides attentive care in a comfortable environment.
+      </p>
     </div>
 
+    <div class="services-grid">
+      <article class="service-card" *ngFor="let item of cardsItems">
+        <div class="service-image">
+          <img [src]="item.img" [alt]="item.title" />
 
-</div>
+          <span class="service-check" aria-hidden="true">
+            <i [class]="item.icono"></i>
+          </span>
+        </div>
+
+        <div class="service-content">
+          <h3>{{ item.title }}</h3>
+
+          <p>{{ item.text }}</p>
+
+          <a href="#contact" class="service-link">
+            Request an appointment
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="services-footer">
+      <p>Not sure which treatment you need?</p>
+
+      <a href="#contact">
+        Talk with our team
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
