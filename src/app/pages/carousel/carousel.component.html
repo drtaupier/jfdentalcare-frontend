@@ -1,45 +1,158 @@
-<div id="carouselExampleControls" class="carousel slide bg-dark" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="carousel-item-overlay">
-          <img src="../../../assets/images/sala.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption">
-            <h5>Flor Lopez</h5>
-            <p>"I have been a patient of Dr. Chumpitaz for 2 years. The service he provides is very professional,
-              and the level of care for his patients is very good. I felt very confortable with him."
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="carousel-item-overlay">
-          <img src="../../../assets/images/sala2.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption">
-            <h5>Michael Green</h5>
-            <p>“I have been seeing Dr. Chumpitaz for several years and I will continue to do so because of his quality of care
-               and the continued concern toward seeing that his patients are well.”
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="carousel-item-overlay">
-          <img src="../../../assets/images/working.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption">
-            <h5>Kate Wright</h5>
-            <p>“I have been seeing Dr. Chumpitaz for several years and I will continue to do so because of his quality of 
-              care and the continued concern toward seeing that his patients are well.”
-            </p>
-          </div>
-        </div>
-      </div>
+<section class="testimonials-section" aria-labelledby="testimonials-title">
+  <div class="testimonials-container">
+    <div class="testimonials-heading">
+      <span class="section-label">Patient stories</span>
+
+      <h2 id="testimonials-title">Kind words from our patients</h2>
+
+      <p>
+        Discover why families trust JF Dental Care for comfortable, personalized
+        dentistry.
+      </p>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="visually-hidden">Next</span>
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
+
+    <div
+      id="patientTestimonials"
+      class="carousel slide testimonial-carousel"
+      data-bs-ride="carousel"
+      data-bs-interval="7000"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#patientTestimonials"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Testimonial 1"
+        ></button>
+
+        <button
+          type="button"
+          data-bs-target="#patientTestimonials"
+          data-bs-slide-to="1"
+          aria-label="Testimonial 2"
+        ></button>
+
+        <button
+          type="button"
+          data-bs-target="#patientTestimonials"
+          data-bs-slide-to="2"
+          aria-label="Testimonial 3"
+        ></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testimonial-slide">
+            <img
+              src="assets/images/sala.jpg"
+              alt="Comfortable waiting area at JF Dental Care"
+            />
+
+            <div class="image-overlay"></div>
+
+            <article class="testimonial-card">
+              <span class="quote-mark" aria-hidden="true">“</span>
+
+              <p class="testimonial-quote">
+                I have been a patient of Dr. Chumpitaz for two years. The
+                service he provides is very professional, and the level of care
+                for his patients is very good. I felt very comfortable with him.
+              </p>
+
+              <div class="patient-information">
+                <span class="patient-initials" aria-hidden="true">FL</span>
+
+                <div>
+                  <h3>Flor Lopez</h3>
+                  <p>JF Dental Care patient</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="testimonial-slide">
+            <img
+              src="assets/images/sala2.jpg"
+              alt="Welcoming interior of JF Dental Care"
+            />
+
+            <div class="image-overlay"></div>
+
+            <article class="testimonial-card">
+              <span class="quote-mark" aria-hidden="true">“</span>
+
+              <p class="testimonial-quote">
+                I have been seeing Dr. Chumpitaz for several years and will
+                continue to do so because of his professional care and his
+                continued concern for the well-being of his patients.
+              </p>
+
+              <div class="patient-information">
+                <span class="patient-initials" aria-hidden="true">MG</span>
+
+                <div>
+                  <h3>Michael Green</h3>
+                  <p>JF Dental Care patient</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="testimonial-slide">
+            <img
+              src="assets/images/working.jpg"
+              alt="Dental care being provided at JF Dental Care"
+            />
+
+            <div class="image-overlay"></div>
+
+            <article class="testimonial-card">
+              <span class="quote-mark" aria-hidden="true">“</span>
+
+              <p class="testimonial-quote">
+                I appreciate the professional care and personal attention
+                provided by Dr. Chumpitaz and his team. They always make me feel
+                comfortable and genuinely cared for.
+              </p>
+
+              <div class="patient-information">
+                <span class="patient-initials" aria-hidden="true">KW</span>
+
+                <div>
+                  <h3>Kate Wright</h3>
+                  <p>JF Dental Care patient</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#patientTestimonials"
+        data-bs-slide="prev"
+        aria-label="Previous testimonial"
+      >
+        <span class="pi pi-arrow-left" aria-hidden="true"></span>
+      </button>
+
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#patientTestimonials"
+        data-bs-slide="next"
+        aria-label="Next testimonial"
+      >
+        <span class="pi pi-arrow-right" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
+</section>
