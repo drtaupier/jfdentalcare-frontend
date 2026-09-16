@@ -5,27 +5,25 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class RegisterComponent {
-
   miFormulario: FormGroup = this.fb.group({
-    firstname: [ '', [Validators.required ]],
-    lastname: [ '', [Validators.required ]],
-    username: [ '', [Validators.required ]],
-    password: [ '', [Validators.required, Validators.minLength(6) ]],
-    dob: [ '', [Validators.required ]],
-    role_id: [ '2', [Validators.required ]]
+    firstname: ['', [Validators.required]],
+    lastname: ['', [Validators.required]],
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    dob: ['', [Validators.required]],
+    role_id: ['2', [Validators.required]],
   });
-  
-  constructor( private fb: FormBuilder,
-                private router: Router ) { }
 
-  registro(){
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+  ) {}
+
+  registro(): void {
     console.log(this.miFormulario.value);
-        
-    this.router.navigateByUrl('/dashboard')
+    this.router.navigateByUrl('/dashboard');
   }
-
 }

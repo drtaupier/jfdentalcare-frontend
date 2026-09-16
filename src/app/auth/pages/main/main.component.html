@@ -1,30 +1,185 @@
-<div class="wrapper">
-    <div class="formulario">
-        <a routerLink="/main" routerLinkActive="active"><img src="../../../../assets/images/logo2.png" alt="logo"></a>
-        <form autocomplete="off" 
-            [formGroup]="miFormulario"
-            (ngSubmit)="login()">
-            
-            <div class="form-input">
-                <input type="text" name="username" formControlName="username" placeholder="name@example.com">
-            </div>
+<main class="login-page">
+  <section class="login-shell" aria-labelledby="login-title">
+    <div class="login-visual" aria-hidden="true">
+      <div class="visual-overlay"></div>
 
-            <div class="form-input">
-                <input type="password" name="password" formControlName="password" placeholder="Password">
-            </div>
-            <div class="form-input">
-                <input type="submit" value="Login">
-            </div>
-        </form>
-    </div>
-    <div class="footer">
-        <div class="footer-container">
-            <p>&copy; Copyright {{ getYear() }} - David Rivera Taupier <p>
+      <div class="visual-content">
+        <span class="visual-label">JF Dental Care</span>
+
+        <h1>Welcome back</h1>
+
+        <p>
+          Secure access to your practice dashboard and patient communications.
+        </p>
+
+        <div class="visual-feature">
+          <span class="feature-icon">
+            <i class="pi pi-shield"></i>
+          </span>
+
+          <span>Protected staff access</span>
         </div>
+      </div>
     </div>
-</div>
 
+    <div class="login-panel">
+      <div class="login-card">
+        <a
+          routerLink="/main"
+          class="login-brand"
+          aria-label="Return to JF Dental Care home"
+        >
+          <span class="brand-logo">
+            <img src="assets/images/jf-logo.png" alt="JF Dental Care logo" />
+          </span>
 
+          <span class="brand-copy">
+            <strong>JF Dental Care</strong>
+            <small>Family Dentistry</small>
+          </span>
+        </a>
 
+        <div class="login-heading">
+          <span class="section-label">Staff portal</span>
+          <h2 id="login-title">Sign in to your account</h2>
+          <p>Enter your credentials to access the dashboard.</p>
+        </div>
 
+        <form
+          autocomplete="off"
+          [formGroup]="miFormulario"
+          (ngSubmit)="login()"
+          novalidate
+        >
+          <div class="form-field">
+            <label for="username">Username</label>
 
+            <div
+              class="input-control"
+              [class.input-error]="
+                miFormulario.get('username')?.invalid &&
+                miFormulario.get('username')?.touched
+              "
+            >
+              <i class="pi pi-user" aria-hidden="true"></i>
+
+              <input
+                id="username"
+                type="text"
+                formControlName="username"
+                placeholder="Enter your username"
+                autocomplete="username"
+              />
+            </div>
+
+            <small
+              class="field-error"
+              *ngIf="
+                miFormulario.get('username')?.hasError('required') &&
+                miFormulario.get('username')?.touched
+              "
+            >
+              Please enter your username.
+            </small>
+          </div>
+
+          <div class="form-field">
+            <label for="password">Password</label>
+
+            <div
+              class="input-control"
+              [class.input-error]="
+                miFormulario.get('password')?.invalid &&
+                miFormulario.get('password')?.touched
+              "
+            >
+              <i class="pi pi-lock" aria-hidden="true"></i>
+
+              <input
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+              />
+
+              <button
+                type="button"
+                class="password-toggle"
+                (click)="togglePasswordVisibility()"
+                [attr.aria-label]="
+                  showPassword ? 'Hide password' : 'Show password'
+                "
+                [attr.aria-pressed]="showPassword"
+              >
+                <i
+                  class="pi"
+                  [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </div>
+
+            <small
+              class="field-error"
+              *ngIf="
+                miFormulario.get('password')?.hasError('required') &&
+                miFormulario.get('password')?.touched
+              "
+            >
+              Please enter your password.
+            </small>
+
+            <small
+              class="field-error"
+              *ngIf="
+                miFormulario.get('password')?.hasError('minlength') &&
+                miFormulario.get('password')?.touched
+              "
+            >
+              Password must contain at least 6 characters.
+            </small>
+          </div>
+
+          <div
+            class="authentication-error"
+            role="alert"
+            *ngIf="miFormulario.hasError('authError')"
+          >
+            <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+
+            <span>
+              We could not sign you in. Check your username and password and try
+              again.
+            </span>
+          </div>
+
+          <button type="submit" class="login-button" [disabled]="isSubmitting">
+            <span>{{ isSubmitting ? "Signing in..." : "Sign in" }}</span>
+
+            <i
+              class="pi"
+              [ngClass]="isSubmitting ? 'pi-spin pi-spinner' : 'pi-arrow-right'"
+              aria-hidden="true"
+            ></i>
+          </button>
+        </form>
+
+        <div class="login-help">
+          <i class="pi pi-lock" aria-hidden="true"></i>
+          <span>This area is reserved for authorized staff.</span>
+        </div>
+
+        <a routerLink="/main" class="back-link">
+          <i class="pi pi-arrow-left" aria-hidden="true"></i>
+          Return to website
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="login-footer">
+    <p>© {{ getYear() }} JF Dental Care. All rights reserved.</p>
+    <p>Secure staff portal</p>
+  </footer>
+</main>
