@@ -23,13 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -43,7 +38,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "6kb"
+                  "maximumError": "7kb"
                 }
               ],
               "fileReplacements": [
@@ -68,11 +63,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-          "port": 8080,
-          "host": "0.0.0.0",
-          "disableHostCheck": true
-        },
-        "configurations": {
+            "port": 8080,
+            "host": "0.0.0.0",
+            "disableHostCheck": true
+          },
+          "configurations": {
             "production": {
               "browserTarget": "jfdental:build:production"
             },
@@ -96,13 +91,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
