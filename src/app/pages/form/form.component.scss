@@ -1,478 +1,818 @@
-$button-bg: #44445f;
-$button-bg2: #4b5369;
-$color: #f9f5f5;
+:host {
+  display: block;
+}
 
-.wrapper {
-  width: 100vw;
-  height: 650px;
-  display: flex;
-  flex-direction: row;
-  min-width: 320px;
-  background: $color;
-  .form-image {
-    width: 50%;
+.appointment-section {
+  padding: 90px 24px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(39, 78, 130, 0.1),
+      transparent 35%
+    ),
+    #f5f7fb;
+}
+
+.appointment-card {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) minmax(460px, 1.15fr);
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(31, 48, 87, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 24px 70px rgba(31, 48, 87, 0.14);
+}
+
+.appointment-visual {
+  position: relative;
+  min-height: 680px;
+  overflow: hidden;
+  background: #1f3057;
+
+  img {
+    width: 100%;
     height: 100%;
-    display: flex;
-    padding-top: 50px;
-    margin-left: 100px;
-    justify-content: center;
-    align-items: center;
-    .img-container {
-      width: 70%;
-      height: 90%;
-      img {
-        height: 80%;
-        object-fit: cover;
-      }
-    }
+    object-fit: cover;
+    object-position: center;
   }
-  .contact-form {
-    display: flex;
-    width: 50%;
-    height: 90%;
-    justify-content: flex-start;
-    align-items: center;
-    .formulario {
-      width: 90%;
-      height: 90%;
-      margin-right: 60px;
-      padding-top: 20px;
-      h2 {
-        margin-bottom: 30px;
-      }
-      form {
-        width: 90%;
-        width: 80%;
-        input {
-          &:focus {
-            box-shadow: none;
-            outline: none;
-          }
-        }
-        .form-select {
-          margin-left: 15px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          padding: 7px;
-          width: 69%;
-          &:focus {
-            box-shadow: none;
-            outline: none;
-          }
-        }
-      }
-    }
-    button {
-      padding: 8px;
-      width: 100px;
-      background-color: $button-bg;
-      color: $color;
-      border-radius: 4px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-      border: none;
-      box-shadow: inherit(10px 10px 3px #000);
-      cursor: pointer;
-      &:hover {
-        background-color: $button-bg2;
-        transition-duration: 2s;
-      }
-    }
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(
+      180deg,
+      rgba(16, 31, 66, 0.05) 30%,
+      rgba(16, 31, 66, 0.9) 100%
+    );
   }
 }
 
-@media screen and (max-width: 1068px) {
-  .wrapper {
-    .form-image {
-      margin-left: 50px;
-    }
-    .contact-form {
-      .formulario {
-        margin-right: 40px;
-        // background: #000;
-        justify-content: start;
-        form {
-          width: 100%;
-        }
-      }
-    }
+.visual-overlay {
+  position: absolute;
+  right: 40px;
+  bottom: 42px;
+  left: 40px;
+  z-index: 1;
+  color: #ffffff;
+
+  span {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #bcd5f4;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  h3 {
+    max-width: 360px;
+    margin: 0 0 12px;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  p {
+    max-width: 360px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }
 
-@media screen and (max-width: 900px) {
-  .wrapper {
-    .form-image {
-      margin-left: 30px;
-    }
+.appointment-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px;
+}
+
+.appointment-header {
+  margin-bottom: 34px;
+
+  .eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: #376aa6;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+  }
+
+  h2 {
+    margin: 0 0 14px;
+    color: #17213a;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 750;
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 560px;
+    margin: 0;
+    color: #687386;
+    font-size: 1rem;
+    line-height: 1.65;
   }
 }
 
-@media screen and (max-width: 850px) {
-  .wrapper {
-    .form-image {
-      margin-left: 0;
-    }
+.appointment-form {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.form-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  label {
+    margin-bottom: 8px;
+    color: #25324b;
+    font-size: 0.88rem;
+    font-weight: 650;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 14px 16px;
+    color: #17213a;
+    font: inherit;
+    background: #f8fafc;
+    border: 1px solid #d8e0ea;
+    border-radius: 12px;
+    outline: none;
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      background-color 160ms ease;
+  }
+
+  input,
+  select {
+    min-height: 52px;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #98a2b3;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    background: #ffffff;
+    border-color: #376aa6;
+    box-shadow: 0 0 0 4px rgba(55, 106, 166, 0.12);
   }
 }
 
-@media screen and (max-width: 800px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        form {
-          label {
-            display: none;
-          }
-          input {
-            width: 120%;
-            margin-left: -80px;
-          }
-          .form-text {
-            margin-left: -80px;
-          }
-          .form-select {
-            margin-left: -65px;
-            width: 80%;
-          }
-          textarea {
-            margin-left: -33%;
-            width: 120%;
-          }
-          button[type="submit"] {
-            margin-right: 37px;
-          }
-        }
-      }
+.field-error {
+  margin-top: 6px;
+  color: #c43d4b;
+  font-size: 0.78rem;
+}
+
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  margin: 4px 0 0;
+  padding: 14px 24px;
+  color: #ffffff;
+  font-size: 0.96rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #273f72, #1f3057);
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(31, 48, 87, 0.2);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+
+  span {
+    font-size: 1.25rem;
+    transition: transform 160ms ease;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(31, 48, 87, 0.28);
+
+    span {
+      transform: translateX(4px);
     }
+  }
+
+  &:disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+    box-shadow: none;
   }
 }
 
-@media screen and (max-width: 760px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        form {
-          label {
-            display: none;
-          }
-          input {
-            width: 120%;
-            margin-left: -80px;
-          }
-          .form-text {
-            margin-left: -80px;
-          }
-          .form-select {
-            margin-left: -65px;
-            width: 80%;
-          }
-          textarea {
-            margin-left: -33%;
-            width: 120%;
-          }
-          button[type="submit"] {
-            margin-right: 37px;
-          }
-        }
-      }
-    }
+.success-message {
+  margin-top: 20px;
+  padding: 16px 18px;
+  color: #17603a;
+  line-height: 1.5;
+  background: #eaf8f0;
+  border: 1px solid #bce5cc;
+  border-radius: 12px;
+
+  strong {
+    margin-right: 4px;
   }
 }
 
-@media screen and (max-width: 720px) {
-  .wrapper {
-    .contact-form {
-      margin-left: 50px;
-      .formulario {
-        form {
-          textarea {
-            margin-left: -38%;
-          }
-        }
-      }
+@media (max-width: 900px) {
+  .appointment-card {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+  }
+
+  .appointment-visual {
+    min-height: 340px;
+
+    img {
+      position: absolute;
+      inset: 0;
     }
+  }
+
+  .appointment-content {
+    padding: 48px;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        margin-left: 40px;
-        form {
-          input {
-            width: 135%;
-          }
-          .form-select {
-            width: 87%;
-          }
-          textarea {
-            margin-left: -46%;
-            width: 136%;
-          }
-        }
-      }
-    }
+@media (max-width: 600px) {
+  .appointment-section {
+    padding: 40px 16px;
   }
-}
 
-@media screen and (max-width: 640px) {
-  .contact-form {
-    .formulario {
-      margin-left: 40px;
-      form {
-        input {
-          width: 135%;
-        }
-        .form-select {
-          width: 87%;
-        }
-        textarea {
-          margin-left: -46%;
-          width: 136%;
-        }
-      }
-    }
+  .appointment-card {
+    border-radius: 18px;
   }
-}
 
-@media screen and (max-width: 600px) {
-  .wrapper {
-    .form-image {
+  .appointment-visual {
+    min-height: 260px;
+  }
+
+  .visual-overlay {
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+
+    h3 {
+      font-size: 1.75rem;
+    }
+
+    p {
       display: none;
     }
-    .contact-form {
-      width: 100%;
-      .formulario {
-        width: 90%;
-        justify-content: flex-start;
-        margin-left: 0;
-        padding: 0;
-        form {
-          margin-left: -60px;
-          .form-select {
-            margin-left: 66px;
-          }
-          textarea {
-            margin-left: -80px;
-          }
-          button[type="submit"] {
-            margin-right: -46px;
-          }
-        }
-      }
+  }
+
+  .appointment-content {
+    padding: 34px 22px;
+  }
+
+  .appointment-header {
+    margin-bottom: 28px;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .form-grid--two {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .field {
+    margin-bottom: 17px;
+
+    input,
+    select,
+    textarea {
+      font-size: 16px;
     }
   }
 }
 
-@media screen and (max-width: 580px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        form {
-          .form-select {
-            margin-left: 62px;
-          }
-        }
-      }
-    }
+@media (max-width: 380px) {
+  .appointment-section {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .appointment-content {
+    padding: 30px 18px;
   }
 }
 
-@media screen and (max-width: 560px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        form {
-          .form-select {
-            margin-left: 57px;
-          }
-          button[type="submit"] {
-            margin-right: -42px;
-          }
-        }
-      }
-    }
-  }
-}
+// $button-bg: #44445f;
+// $button-bg2: #4b5369;
+// $color: #f9f5f5;
 
-@media screen and (max-width: 540px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        form {
-          .form-select {
-            margin-left: 54px;
-          }
-          button[type="submit"] {
-            margin-right: -34px;
-          }
-        }
-      }
-    }
-  }
-}
+// .wrapper {
+//   width: 100vw;
+//   height: 650px;
+//   display: flex;
+//   flex-direction: row;
+//   min-width: 320px;
+//   background: $color;
+//   .form-image {
+//     width: 50%;
+//     height: 100%;
+//     display: flex;
+//     padding-top: 50px;
+//     margin-left: 100px;
+//     justify-content: center;
+//     align-items: center;
+//     .img-container {
+//       width: 70%;
+//       height: 90%;
+//       img {
+//         height: 80%;
+//         object-fit: cover;
+//       }
+//     }
+//   }
+//   .contact-form {
+//     display: flex;
+//     width: 50%;
+//     height: 90%;
+//     justify-content: flex-start;
+//     align-items: center;
+//     .formulario {
+//       width: 90%;
+//       height: 90%;
+//       margin-right: 60px;
+//       padding-top: 20px;
+//       h2 {
+//         margin-bottom: 30px;
+//       }
+//       form {
+//         width: 90%;
+//         width: 80%;
+//         input {
+//           &:focus {
+//             box-shadow: none;
+//             outline: none;
+//           }
+//         }
+//         .form-select {
+//           margin-left: 15px;
+//           border: 1px solid #ccc;
+//           border-radius: 4px;
+//           padding: 7px;
+//           width: 69%;
+//           &:focus {
+//             box-shadow: none;
+//             outline: none;
+//           }
+//         }
+//       }
+//     }
+//     button {
+//       padding: 8px;
+//       width: 100px;
+//       background-color: $button-bg;
+//       color: $color;
+//       border-radius: 4px;
+//       margin-top: 20px;
+//       margin-bottom: 30px;
+//       border: none;
+//       box-shadow: inherit(10px 10px 3px #000);
+//       cursor: pointer;
+//       &:hover {
+//         background-color: $button-bg2;
+//         transition-duration: 2s;
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: 525px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        form {
-          .form-select {
-            margin-left: 50px;
-          }
-          button[type="submit"] {
-            margin-right: -32px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 1068px) {
+//   .wrapper {
+//     .form-image {
+//       margin-left: 50px;
+//     }
+//     .contact-form {
+//       .formulario {
+//         margin-right: 40px;
+//         // background: #000;
+//         justify-content: start;
+//         form {
+//           width: 100%;
+//         }
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: 500px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        width: 100%;
-        padding-left: 20px;
-        form {
-          input {
-            width: 145%;
-          }
-          .form-select {
-            margin-left: 41px;
-          }
-          textarea {
-            width: 145%;
-          }
-          button[type="submit"] {
-            margin-right: -43px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 900px) {
+//   .wrapper {
+//     .form-image {
+//       margin-left: 30px;
+//     }
+//   }
+// }
 
-@media screen and (max-width: 470px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        width: 100%;
-        padding-left: 20px;
-        form {
-          input {
-            width: 145%;
-          }
-          .form-select {
-            margin-left: 33px;
-          }
-          textarea {
-            width: 145%;
-          }
-          button[type="submit"] {
-            margin-right: -43px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 850px) {
+//   .wrapper {
+//     .form-image {
+//       margin-left: 0;
+//     }
+//   }
+// }
 
-@media screen and (max-width: 455px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        width: 100%;
-        padding-left: 20px;
-        form {
-          input {
-            width: 157%;
-          }
-          .form-select {
-            margin-left: 30px;
-          }
-          textarea {
-            width: 157%;
-          }
-          button[type="submit"] {
-            margin-right: -60px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 800px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         form {
+//           label {
+//             display: none;
+//           }
+//           input {
+//             width: 120%;
+//             margin-left: -80px;
+//           }
+//           .form-text {
+//             margin-left: -80px;
+//           }
+//           .form-select {
+//             margin-left: -65px;
+//             width: 80%;
+//           }
+//           textarea {
+//             margin-left: -33%;
+//             width: 120%;
+//           }
+//           button[type="submit"] {
+//             margin-right: 37px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: 425px) {
-  .wrapper {
-    .contact-form {
-      .formulario {
-        width: 100%;
-        padding-left: 20px;
-        h2 {
-          margin-left: -40px;
-        }
-        form {
-          input {
-            width: 163%;
-            margin-left: -32%;
-          }
-          .form-select {
-            margin-left: 28px;
-          }
-          textarea {
-            width: 163%;
-            margin-left: -32%;
-          }
-          button[type="submit"] {
-            margin-right: -60px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 760px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         form {
+//           label {
+//             display: none;
+//           }
+//           input {
+//             width: 120%;
+//             margin-left: -80px;
+//           }
+//           .form-text {
+//             margin-left: -80px;
+//           }
+//           .form-select {
+//             margin-left: -65px;
+//             width: 80%;
+//           }
+//           textarea {
+//             margin-left: -33%;
+//             width: 120%;
+//           }
+//           button[type="submit"] {
+//             margin-right: 37px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: 600px) {
-  .wrapper {
-    width: 100%;
-    max-width: 100%;
+// @media screen and (max-width: 720px) {
+//   .wrapper {
+//     .contact-form {
+//       margin-left: 50px;
+//       .formulario {
+//         form {
+//           textarea {
+//             margin-left: -38%;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-    .contact-form {
-      width: 100%;
-      max-width: 100%;
+// @media screen and (max-width: 700px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         margin-left: 40px;
+//         form {
+//           input {
+//             width: 135%;
+//           }
+//           .form-select {
+//             width: 87%;
+//           }
+//           textarea {
+//             margin-left: -46%;
+//             width: 136%;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-      .formulario {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 20px;
+// @media screen and (max-width: 640px) {
+//   .contact-form {
+//     .formulario {
+//       margin-left: 40px;
+//       form {
+//         input {
+//           width: 135%;
+//         }
+//         .form-select {
+//           width: 87%;
+//         }
+//         textarea {
+//           margin-left: -46%;
+//           width: 136%;
+//         }
+//       }
+//     }
+//   }
+// }
 
-        h2 {
-          margin-left: 0;
-        }
+// @media screen and (max-width: 600px) {
+//   .wrapper {
+//     .form-image {
+//       display: none;
+//     }
+//     .contact-form {
+//       width: 100%;
+//       .formulario {
+//         width: 90%;
+//         justify-content: flex-start;
+//         margin-left: 0;
+//         padding: 0;
+//         form {
+//           margin-left: -60px;
+//           .form-select {
+//             margin-left: 66px;
+//           }
+//           textarea {
+//             margin-left: -80px;
+//           }
+//           button[type="submit"] {
+//             margin-right: -46px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-        form {
-          width: 100%;
-          max-width: 100%;
-          input,
-          textarea {
-            width: 100%;
-            max-width: 100%;
-            margin-left: 0;
-          }
-          .form-select {
-            width: 69%;
-            max-width: 69%;
-            margin-left: 28%;
+// @media screen and (max-width: 580px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         form {
+//           .form-select {
+//             margin-left: 62px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-            button[type="submit"] {
-              margin-right: 0;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 560px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         form {
+//           .form-select {
+//             margin-left: 57px;
+//           }
+//           button[type="submit"] {
+//             margin-right: -42px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 540px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         form {
+//           .form-select {
+//             margin-left: 54px;
+//           }
+//           button[type="submit"] {
+//             margin-right: -34px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 525px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         form {
+//           .form-select {
+//             margin-left: 50px;
+//           }
+//           button[type="submit"] {
+//             margin-right: -32px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 500px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         width: 100%;
+//         padding-left: 20px;
+//         form {
+//           input {
+//             width: 145%;
+//           }
+//           .form-select {
+//             margin-left: 41px;
+//           }
+//           textarea {
+//             width: 145%;
+//           }
+//           button[type="submit"] {
+//             margin-right: -43px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 470px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         width: 100%;
+//         padding-left: 20px;
+//         form {
+//           input {
+//             width: 145%;
+//           }
+//           .form-select {
+//             margin-left: 33px;
+//           }
+//           textarea {
+//             width: 145%;
+//           }
+//           button[type="submit"] {
+//             margin-right: -43px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 455px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         width: 100%;
+//         padding-left: 20px;
+//         form {
+//           input {
+//             width: 157%;
+//           }
+//           .form-select {
+//             margin-left: 30px;
+//           }
+//           textarea {
+//             width: 157%;
+//           }
+//           button[type="submit"] {
+//             margin-right: -60px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 425px) {
+//   .wrapper {
+//     .contact-form {
+//       .formulario {
+//         width: 100%;
+//         padding-left: 20px;
+//         h2 {
+//           margin-left: -40px;
+//         }
+//         form {
+//           input {
+//             width: 163%;
+//             margin-left: -32%;
+//           }
+//           .form-select {
+//             margin-left: 28px;
+//           }
+//           textarea {
+//             width: 163%;
+//             margin-left: -32%;
+//           }
+//           button[type="submit"] {
+//             margin-right: -60px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 600px) {
+//   .wrapper {
+//     width: 100%;
+//     max-width: 100%;
+
+//     .contact-form {
+//       width: 100%;
+//       max-width: 100%;
+
+//       .formulario {
+//         width: 100%;
+//         max-width: 100%;
+//         padding: 0 20px;
+
+//         h2 {
+//           margin-left: 0;
+//         }
+
+//         form {
+//           width: 100%;
+//           max-width: 100%;
+//           input,
+//           textarea {
+//             width: 100%;
+//             max-width: 100%;
+//             margin-left: 0;
+//           }
+//           .form-select {
+//             width: 69%;
+//             max-width: 69%;
+//             margin-left: 28%;
+
+//             button[type="submit"] {
+//               margin-right: 0;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

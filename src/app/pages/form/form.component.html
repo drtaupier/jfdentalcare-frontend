@@ -1,4 +1,131 @@
-<div class="wrapper">
+<section class="appointment-section">
+  <div class="appointment-card">
+    <div class="appointment-visual">
+      <img src="assets/images/img5.jpg" alt="JF Dental Care appointment" />
+
+      <div class="visual-overlay">
+        <span>JF Dental Care</span>
+        <h3>Your best smile starts here.</h3>
+        <p>Personalized dental care in a comfortable environment.</p>
+      </div>
+    </div>
+
+    <div class="appointment-content">
+      <header class="appointment-header">
+        <span class="eyebrow">APPOINTMENTS</span>
+        <h2>Book an appointment</h2>
+        <p>
+          Tell us how we can help. Our team will contact you to confirm your
+          appointment.
+        </p>
+      </header>
+
+      <form
+        [formGroup]="miFormulario"
+        class="appointment-form"
+        autocomplete="on"
+        (ngSubmit)="enviar()"
+      >
+        <div class="form-grid form-grid--two">
+          <div class="field">
+            <label for="firstname">First name</label>
+            <input
+              id="firstname"
+              type="text"
+              formControlName="firstname"
+              placeholder="Enter your first name"
+              autocomplete="given-name"
+            />
+            <span class="field-error" *ngIf="campoNoEsValido('firstname')">
+              First name is required
+            </span>
+          </div>
+
+          <div class="field">
+            <label for="lastname">Last name</label>
+            <input
+              id="lastname"
+              type="text"
+              formControlName="lastname"
+              placeholder="Enter your last name"
+              autocomplete="family-name"
+            />
+            <span class="field-error" *ngIf="campoNoEsValido('lastname')">
+              Last name is required
+            </span>
+          </div>
+        </div>
+
+        <div class="form-grid form-grid--two">
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input
+              id="phone"
+              type="tel"
+              formControlName="phone"
+              placeholder="(123) 456-7890"
+              autocomplete="tel"
+            />
+            <span class="field-error" *ngIf="campoNoEsValido('phone')">
+              Phone number is required
+            </span>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="name@example.com"
+              autocomplete="email"
+            />
+            <span class="field-error" *ngIf="campoNoEsValido('email')">
+              Enter a valid email address
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="possible_appt">Preferred time frame</label>
+          <select id="possible_appt" formControlName="possible_appt">
+            <option value="" disabled>Select an option</option>
+            <option value="1">As soon as possible</option>
+            <option value="2">Within the next 3 days</option>
+            <option value="3">Within the next week</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">How can we help?</label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="4"
+            placeholder="Tell us briefly about your dental needs..."
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="submit-button"
+          [hidden]="!showButton"
+          [disabled]="miFormulario.invalid"
+        >
+          Request appointment
+          <span aria-hidden="true">→</span>
+        </button>
+
+        <div class="success-message" *ngIf="sended" role="alert">
+          <strong>Thank you!</strong>
+          Your message has been sent successfully.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- <div class="wrapper">
   <div class="form-image">
     <div class="img-container">
       <img src="'../../../../../assets/images/img5.jpg" alt="apppointment" />
@@ -18,7 +145,7 @@
           <div class="col-9">
             <input type="text" class="form-control shadow-none" formControlName="firstname" placeholder="Firstname">
                <span class="form-text text-danger"
-                    *ngIf="campoNoEsValido('firstname')"> The firstname is required</span>
+                   // *ngIf="campoNoEsValido('firstname')"> The firstname is required</span>
           </div>
         </div>
 
@@ -29,7 +156,7 @@
           <div class="col-9">
             <input type="text" class="form-control shadow-none" formControlName="lastname" placeholder="Lastname">
                <span class="form-text text-danger"
-                    *ngIf="campoNoEsValido('lastname')"> The lastname is required</span>
+                  //  *ngIf="campoNoEsValido('lastname')"> The lastname is required</span>
           </div>
         </div>
 
@@ -40,7 +167,7 @@
           <div class="col-9">
             <input type="text" class="form-control shadow-none" formControlName="phone" placeholder="Phone">
                <span class="form-text text-danger"
-                    *ngIf="campoNoEsValido('phone')"> The phone number is required</span>
+                  //  *ngIf="campoNoEsValido('phone')"> The phone number is required</span>
           </div>
         </div>
 
@@ -51,7 +178,7 @@
           <div class="col-9">
             <input type="email" class="form-control shadow-none" formControlName="email" placeholder="name@mysite.com">
                <span class="form-text text-danger"
-                    *ngIf="campoNoEsValido('email')">Enter a valid email address</span>
+                 //   *ngIf="campoNoEsValido('email')">Enter a valid email address</span>
           </div>
         </div>
 
@@ -124,7 +251,7 @@
              <div class="col-9">
                <input type="tel" class="form-control shadow-none" formControlName="phone" placeholder="(123)456-7890">
                <span class="form-text text-danger"
-                    *ngIf="campoNoEsValido('phone')">
+               //     *ngIf="campoNoEsValido('phone')">
                 The phone number is required
             </span>
              </div>
@@ -174,3 +301,4 @@
       </div>
       </div>
   </div> -->
+-->
