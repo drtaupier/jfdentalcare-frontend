@@ -1,32 +1,271 @@
+<div class="workspace">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a class="brand" routerLink="/dashboard">
+        <img src="assets/images/jf-logo.png" alt="" />
+        <span>
+          <strong>JF Dental Care</strong>
+          <small>STAFF WORKSPACE</small>
+        </span>
+      </a>
 
-    <app-header [usuario]="usuario"></app-header>
+      <button
+        #menuToggle
+        class="menu-toggle"
+        type="button"
+        aria-controls="workspace-menu"
+        [attr.aria-expanded]="menuOpen"
+        (click)="menuOpen = !menuOpen"
+      >
+        <i
+          class="pi"
+          [ngClass]="menuOpen ? 'pi-times' : 'pi-bars'"
+          aria-hidden="true"
+        ></i>
+        {{ menuOpen ? "Close" : "Menu" }}
+      </button>
+    </div>
 
-    <div class="row">
-      <div class="col-9 mx-auto">
-          <h2>Messages:</h2>
-          <table class="table table-striped my-custom-style d-justify-content-center align-items-center">
-            <thead class="thead">
+    <div
+      id="workspace-menu"
+      class="sidebar-menu"
+      [class.is-open]="menuOpen"
+      (keydown.escape)="menuOpen = false; menuToggle.focus()"
+    >
+      <p class="nav-label">WORKSPACE</p>
+
+      <nav aria-label="Workspace navigation" (click)="menuOpen = false">
+        <a routerLink="/dashboard" class="active" aria-current="page">
+          <i class="pi pi-home" aria-hidden="true"></i>
+          Overview
+        </a>
+
+        <a routerLink="/dashboard/attendedmessages">
+          <i class="pi pi-inbox" aria-hidden="true"></i>
+          Attended requests
+        </a>
+
+        <ng-container *ngIf="canManageUsers">
+          <a routerLink="/dashboard/activeusers">
+            <i class="pi pi-users" aria-hidden="true"></i>
+            Users
+          </a>
+
+          <a routerLink="/dashboard/createuser">
+            <i class="pi pi-user-plus" aria-hidden="true"></i>
+            Create user
+          </a>
+        </ng-container>
+
+        <a routerLink="/auth/change-password">
+          <i class="pi pi-shield" aria-hidden="true"></i>
+          Change password
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a routerLink="/main" (click)="menuOpen = false">
+          <i class="pi pi-external-link" aria-hidden="true"></i>
+          Visit website
+        </a>
+
+        <button type="button" (click)="logout()">
+          <i class="pi pi-sign-out" aria-hidden="true"></i>
+          Sign out
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <span class="eyebrow">Practice overview</span>
+      <div class="account">
+        <span class="avatar" aria-hidden="true">
+          {{ displayName.charAt(0) | uppercase }}
+        </span>
+        <span>
+          <strong>{{ displayName }}</strong>
+          <small>{{ roleLabel }}</small>
+        </span>
+      </div>
+    </header>
+
+    <section class="welcome" aria-labelledby="dashboard-title">
+      <div>
+        <p class="eyebrow">{{ today | date: "EEEE, MMMM d, y" }}</p>
+        <h1 id="dashboard-title">Welcome, {{ displayName }}.</h1>
+        <p>Keep patient inquiries moving, one conversation at a time.</p>
+      </div>
+      <span class="welcome-icon" aria-hidden="true">
+        <i class="pi pi-comments"></i>
+      </span>
+    </section>
+
+    <section class="stats" aria-label="Request summary">
+      <article class="stat">
+        <span class="stat-icon"
+          ><i class="pi pi-inbox" aria-hidden="true"></i
+        ></span>
+        <div>
+          <p>Requests in this inbox</p>
+          <strong>{{ lastUpdated ? messages.length : "—" }}</strong>
+        </div>
+      </article>
+      <article class="stat">
+        <span class="stat-icon"
+          ><i class="pi pi-calendar" aria-hidden="true"></i
+        ></span>
+        <div>
+          <p>Received today in this inbox</p>
+          <strong>{{ lastUpdated ? receivedToday : "—" }}</strong>
+        </div>
+      </article>
+      <article class="stat">
+        <span class="stat-icon"
+          ><i class="pi pi-clock" aria-hidden="true"></i
+        ></span>
+        <div>
+          <p>Last refreshed</p>
+          <strong class="time">
+            {{ lastUpdated ? (lastUpdated | date: "shortTime") : "—" }}
+          </strong>
+        </div>
+      </article>
+    </section>
+
+    <div *ngIf="errorMessage" class="error" role="alert">
+      <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+      {{ errorMessage }}
+      <button *ngIf="!usuario" type="button" (click)="logout()">
+        Sign in again
+      </button>
+    </div>
+
+    <section
+      class="inbox"
+      aria-labelledby="inbox-title"
+      [attr.aria-busy]="loading"
+    >
+      <div class="inbox-heading">
+        <div>
+          <span class="eyebrow">Patient communications</span>
+          <h2 id="inbox-title">Request inbox</h2>
+        </div>
+        <button
+          class="refresh"
+          type="button"
+          (click)="refresh()"
+          [disabled]="loading || !usuario"
+        >
+          <i
+            class="pi"
+            [ngClass]="loading ? 'pi-spin pi-spinner' : 'pi-refresh'"
+            aria-hidden="true"
+          ></i>
+          {{ loading ? "Loading..." : "Refresh" }}
+        </button>
+      </div>
+
+      <div class="search">
+        <i class="pi pi-search" aria-hidden="true"></i>
+        <label class="visually-hidden" for="request-search"
+          >Search requests</label
+        >
+        <input
+          id="request-search"
+          type="search"
+          [(ngModel)]="search"
+          placeholder="Search by name, email or phone"
+        />
+      </div>
+
+      <p *ngIf="loading && !lastUpdated" class="empty" role="status">
+        Loading requests…
+      </p>
+
+      <ng-container *ngIf="lastUpdated">
+        <div
+          *ngIf="filteredMessages.length; else emptyInbox"
+          class="table-scroll"
+        >
+          <table>
+            <caption class="visually-hidden">
+              Requests returned by the inbox
+            </caption>
+            <thead>
               <tr>
-                <th scope="order" class="table-primary text-center">#</th>
-                <th scope="name" class="table-primary text-center">Name</th>
-                <th scope="phone" class="table-primary text-center">Phone</th>
-                <th scope="email" class="table-primary text-center">E-mail</th>
-                <th scope="fecha" class="table-primary text-center">Date</th>
-                <th class="table-primary"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Received</th>
+                <th scope="col">
+                  <span class="visually-hidden">Actions</span>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr class="wrap" *ngFor="let message of messages, let i = index">
-                <td class="text-center">{{ i + 1 }}</td>
-                <td class="text-center">{{ message.firstname | titlecase }} {{ message.lastname | titlecase }}</td>
-                <td class="text-center">{{ message.phone | phone }}</td>
-                <td class="text-center">{{ message.email | lowercase }}</td>
-                <td class="text-center">{{ message.fecha_mensaje | date}}</td>
-                <td class="text-center"> 
-                  <button type="button" class="btn btn-secondary" style="padding:3px 14px 3px 14px" (click)="getId(message.message_id)">Info</button>
+              <tr
+                *ngFor="let message of filteredMessages; trackBy: trackMessage"
+              >
+                <td>
+                  <strong
+                    >{{ message.firstname | titlecase }}
+                    {{ message.lastname | titlecase }}</strong
+                  >
+                </td>
+                <td class="contact">
+                  <span>{{ message.email | lowercase }}</span>
+                  <small>{{ message.phone | phone }}</small>
+                </td>
+                <td>{{ message.fecha_mensaje | date: "MMM d, y" }}</td>
+                <td>
+                  <button
+                    class="open-request"
+                    type="button"
+                    (click)="getId(message.message_id)"
+                    [disabled]="openingId !== null"
+                    [attr.aria-label]="
+                      'Open request from ' +
+                      message.firstname +
+                      ' ' +
+                      message.lastname
+                    "
+                  >
+                    {{
+                      openingId === message.message_id
+                        ? "Opening..."
+                        : "View request"
+                    }}
+                    <i class="pi pi-arrow-right" aria-hidden="true"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
+
+        <ng-template #emptyInbox>
+          <div class="empty">
+            <i class="pi pi-inbox" aria-hidden="true"></i>
+            <h3>
+              {{
+                search.trim() ? "No matching requests" : "Your inbox is clear"
+              }}
+            </h3>
+            <p>
+              {{
+                search.trim()
+                  ? "Try another name, email or phone."
+                  : "Requests will appear here when available."
+              }}
+            </p>
+          </div>
+        </ng-template>
+      </ng-container>
+
+      <p class="inbox-note">
+        Inbox refreshes automatically every five minutes.
+      </p>
+    </section>
+  </main>
+</div>
